@@ -1,0 +1,1602 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#FBF8FC" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#16121E" media="(prefers-color-scheme: dark)">
+<title>Дневник хифза</title>
+<meta name="description" content="Заучивание и повторение Корана по таблице: новое, ближнее и дальнее повторение, серия дней, напоминания.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,500;0,600;1,500&family=Amiri+Quran&family=Golos+Text:wght@400;500;600&display=swap">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%237B68E0' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 6C10.3 4.7 7.6 4.2 4 4.6v10.2c3.6-.4 6.3.1 8 1.4 1.7-1.3 4.4-1.8 8-1.4V4.6c-3.6-.4-6.3.1-8 1.4z'/%3E%3Cpath d='M12 6v10.2M7.6 21.4 16.4 16.2M16.4 21.4 7.6 16.2'/%3E%3C/svg%3E">
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+<style>
+:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+body{margin:0;font:14px system-ui,sans-serif}
+img{max-width:100%}
+[hidden]{display:none!important}
+</style>
+<style>
+:root{
+  /* Layout: one phone-width column (max 560px), left-aligned; pastel gradient cards carry state; tab bar fixed to the bottom, the reader's microphone dock floats just above it */
+  --paper:#FBF8FC;
+  --sheet:#FFFFFF;
+  --ink:#2D2541;
+  --ink-2:#6B6383;
+  --ink-3:#A29BB4;
+  --rule:#E8E2F0;
+  --rule-2:#F3EFF8;
+  --accent:#7B68E0;
+  --on-accent:#FFFFFF;
+  --accent-soft:#EEEAFE;
+  --accent-ink:#5B49C7;
+  --wash-a:#FDE3EF;
+  --wash-b:#E6E4FF;
+  --g-dawn:linear-gradient(140deg,#FFE3D3 0%,#FAD4E4 48%,#DDD7FF 100%);
+  --g-done:linear-gradient(140deg,#D3F5E4 0%,#D2EAFF 100%);
+  --g-new:linear-gradient(140deg,#FFF3C4 0%,#FFE0CC 100%);
+  --g-quran:linear-gradient(160deg,#E4EEFF 0%,#EFE6FF 58%,#FCE6F1 100%);
+  --g-tile:linear-gradient(140deg,#E9E1FF 0%,#FBE2EE 100%);
+  --new:#FFD66E; --new-soft:#FFF3CF; --amber:#EFAE45;
+  --rev:#9BB2F6; --rev-ink:#3F5FC9; --rev-soft:#E6ECFE;
+  --err:#F49AB2; --err-ink:#C0335F; --err-soft:#FDE1EA;
+  --ok:#86D9B1; --ok-ink:#1E7F55; --ok-soft:#DDF5EA;
+  --hint:#FFC98B; --hint-soft:#FFEEDB;
+  --track:rgba(45,37,65,.09);
+  --glass:rgba(255,255,255,.62);
+  --hatch:rgba(255,255,255,.4);
+  --shadow:0 12px 32px rgba(91,70,140,.14);
+  --scrim:rgba(45,37,65,.32);
+  --f-display:"Alegreya", Georgia, "Times New Roman", serif;
+  --f-ui:"Golos Text", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --f-ar:"Amiri Quran", "Amiri", "Noto Naskh Arabic", "Geeza Pro", "Traditional Arabic", serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#16121E; --sheet:#221D2E; --ink:#F2EDF9; --ink-2:#B7AECA; --ink-3:#7F7794; --rule:#352E45; --rule-2:#2A2438;
+    --accent:#A594FF; --on-accent:#1A1526; --accent-soft:#2E2752; --accent-ink:#C3B8FF;
+    --wash-a:rgba(150,70,115,.20); --wash-b:rgba(95,95,200,.20);
+    --g-dawn:linear-gradient(140deg,#4B3340 0%,#45304F 50%,#33315D 100%);
+    --g-done:linear-gradient(140deg,#1F4A3A 0%,#213C5D 100%);
+    --g-new:linear-gradient(140deg,#4C4224 0%,#4D3428 100%);
+    --g-quran:linear-gradient(160deg,#232C48 0%,#2E2749 58%,#3A2638 100%);
+    --g-tile:linear-gradient(140deg,#2F2752 0%,#432A41 100%);
+    --new:#E5C15A; --new-soft:#3D3420; --amber:#E5B04F;
+    --rev:#7F97E8; --rev-ink:#AFC0FF; --rev-soft:#25305A;
+    --err:#E07A97; --err-ink:#FFA3BC; --err-soft:#4A2433;
+    --ok:#4FBF8C; --ok-ink:#8BE3B9; --ok-soft:#1C3A2E;
+    --hint:#D9A15C; --hint-soft:#43331F;
+    --track:rgba(255,255,255,.12); --glass:rgba(255,255,255,.10); --hatch:rgba(255,255,255,.2);
+    --shadow:0 12px 32px rgba(0,0,0,.5); --scrim:rgba(0,0,0,.6);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#16121E; --sheet:#221D2E; --ink:#F2EDF9; --ink-2:#B7AECA; --ink-3:#7F7794; --rule:#352E45; --rule-2:#2A2438;
+  --accent:#A594FF; --on-accent:#1A1526; --accent-soft:#2E2752; --accent-ink:#C3B8FF;
+  --wash-a:rgba(150,70,115,.20); --wash-b:rgba(95,95,200,.20);
+  --g-dawn:linear-gradient(140deg,#4B3340 0%,#45304F 50%,#33315D 100%);
+  --g-done:linear-gradient(140deg,#1F4A3A 0%,#213C5D 100%);
+  --g-new:linear-gradient(140deg,#4C4224 0%,#4D3428 100%);
+  --g-quran:linear-gradient(160deg,#232C48 0%,#2E2749 58%,#3A2638 100%);
+  --g-tile:linear-gradient(140deg,#2F2752 0%,#432A41 100%);
+  --new:#E5C15A; --new-soft:#3D3420; --amber:#E5B04F;
+  --rev:#7F97E8; --rev-ink:#AFC0FF; --rev-soft:#25305A;
+  --err:#E07A97; --err-ink:#FFA3BC; --err-soft:#4A2433;
+  --ok:#4FBF8C; --ok-ink:#8BE3B9; --ok-soft:#1C3A2E;
+  --hint:#D9A15C; --hint-soft:#43331F;
+  --track:rgba(255,255,255,.12); --glass:rgba(255,255,255,.10); --hatch:rgba(255,255,255,.2);
+  --shadow:0 12px 32px rgba(0,0,0,.5); --scrim:rgba(0,0,0,.6);
+  color-scheme:dark;
+}
+
+*{box-sizing:border-box}
+html,body{background-color:var(--paper)}
+body{color:var(--ink);font-family:var(--f-ui);font-size:15px;line-height:1.45;-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent;font-variant-numeric:tabular-nums;
+  background-image:radial-gradient(900px 420px at 105% -8%,var(--wash-a) 0%,transparent 62%),radial-gradient(760px 420px at -12% -4%,var(--wash-b) 0%,transparent 58%);background-repeat:no-repeat;min-height:100%}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer;text-align:inherit}
+button:disabled{opacity:.35;cursor:default}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:8px}
+input,select,textarea{font:inherit;color:var(--ink);background:var(--sheet);border:1px solid var(--rule);border-radius:14px;padding:10px 12px;width:100%}
+textarea{min-height:120px;font-size:12px;font-family:ui-monospace,Menlo,Consolas,monospace}
+h1,h2,h3,p{margin:0}
+.muted{color:var(--ink-2)}
+.small{font-size:13px}
+
+.app{max-width:560px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:16px calc(100px + env(safe-area-inset-bottom,0px))}
+.view{display:flex;flex-direction:column;gap:22px}
+
+/* tab bar */
+.tabs{position:fixed;left:0;right:0;bottom:0;z-index:20;background:var(--sheet);border-top:1px solid var(--rule);padding-bottom:env(safe-area-inset-bottom,0px);padding-left:max(10px,env(safe-area-inset-left,0px));padding-right:max(10px,env(safe-area-inset-right,0px))}
+.tabs-in{max-width:560px;margin:0 auto;display:grid;grid-template-columns:repeat(5,1fr)}
+.tab{display:flex;flex-direction:column;align-items:center;gap:2px;padding:7px 0;color:var(--ink-3);font-size:11px;font-weight:500;text-align:center}
+.tab .ic{display:grid;place-items:center;width:52px;height:30px;border-radius:999px;transition:background .2s}
+.tab svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.tab[aria-current="page"]{color:var(--accent-ink);font-weight:600}
+.tab[aria-current="page"] .ic{background:var(--g-tile)}
+
+/* headings */
+.page-title{font-family:var(--f-display);font-weight:700;font-size:36px;line-height:1.05;letter-spacing:-.01em}
+.h2{font-family:var(--f-display);font-size:24px;font-weight:700;line-height:1.15}
+.h3{font-size:13px;font-weight:600;color:var(--ink-2);letter-spacing:.01em}
+.row{display:flex;align-items:center;gap:10px}
+.between{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
+
+/* Today: dawn band */
+.band{border-radius:28px;background:var(--g-dawn);padding:16px 18px 18px;display:flex;flex-direction:column;gap:18px;transition:background .6s}
+.band.is-done{background:var(--g-done)}
+.band-top{display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"mark dots" "date streak" "hijri hijri";column-gap:12px;align-items:end}
+.brandmark{grid-area:mark;align-self:center;display:flex;align-items:center;gap:8px;font-size:13px;font-weight:500;color:var(--ink-2)}
+.brandmark svg{width:24px;height:24px;stroke:var(--ink);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.band-top .dots{grid-area:dots;align-self:center}
+.date{grid-area:date;font-family:var(--f-display);font-weight:700;font-size:44px;line-height:1;margin:16px 0 4px;letter-spacing:-.02em;white-space:nowrap}
+.hijri{grid-area:hijri;font-family:var(--f-display);font-style:italic;font-size:16.5px;color:var(--ink-2)}
+.streak{grid-area:streak;text-align:right;padding-bottom:6px}
+.streak-n{font-family:var(--f-display);font-size:52px;line-height:.85;font-weight:700}
+.streak-l{display:block;font-size:12.5px;color:var(--ink-2);margin-top:5px}
+.dots{display:flex;gap:5px;justify-content:flex-end}
+.dot{width:10px;height:10px;border-radius:50%;border:1.6px solid var(--ink-3);display:block}
+.dot.on{background:var(--ink);border-color:var(--ink)}
+.dot.now{border-color:var(--ink)}
+.band-prog{display:flex;flex-direction:column;gap:8px}
+.band-prog .between{font-size:14px;font-weight:500}
+.band-prog .between b{font-family:var(--f-display);font-size:20px;font-weight:700}
+.band-bar{height:9px;border-radius:999px;background:var(--glass);overflow:hidden}
+.band-bar i{display:block;height:100%;border-radius:999px;background:var(--accent);transition:width .35s ease}
+.band.is-done .band-bar i{background:var(--ok-ink)}
+
+.demo-note{display:flex;gap:12px;align-items:center;justify-content:space-between;background:var(--sheet);border:1px solid var(--rule);border-radius:16px;padding:10px 14px;font-size:13px}
+.demo-note button{font-weight:600;white-space:nowrap;color:var(--accent-ink);text-decoration:underline;text-underline-offset:3px}
+
+/* New: butter card with a mushaf ribbon */
+.new-card{position:relative;background:var(--g-new);border-radius:26px;padding:18px 18px 16px;display:flex;flex-direction:column;gap:10px}
+.ribbon{position:absolute;top:0;right:24px;width:18px;height:46px;background:var(--accent);clip-path:polygon(0 0,100% 0,100% 100%,50% 80%,0 100%)}
+.new-kicker{font-size:13px;font-weight:600;color:var(--ink-2);padding-right:40px}
+.new-title{font-family:var(--f-display);font-size:34px;font-weight:700;line-height:1;text-wrap:balance;padding-right:40px}
+.new-pos{font-size:15px;font-weight:500}
+.new-pos span{color:var(--ink-2);font-weight:400}
+.meter{height:10px;border-radius:999px;background:var(--track);overflow:hidden}
+.meter i{display:block;height:100%;border-radius:999px;background:var(--amber);transition:width .25s ease}
+.stepper{display:flex;gap:8px;flex-wrap:wrap;margin-top:4px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:44px;padding:0 18px;border-radius:16px;font-weight:600;font-size:14.5px;white-space:nowrap}
+.btn svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.btn-ink{background:var(--accent);color:var(--on-accent)}
+.btn-line{border:1.5px solid var(--rule);background:var(--sheet)}
+.btn-glass{background:var(--glass);color:var(--ink)}
+.btn-soft{background:var(--accent-soft);color:var(--accent-ink)}
+.btn-wide{width:100%}
+.btn-sq{width:44px;padding:0;font-size:20px;font-weight:500}
+.today-note{font-size:13px;color:var(--ink-2)}
+
+/* review list */
+.rev-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin-bottom:4px}
+.rev-count{font-size:14px;color:var(--ink-2)}
+.rev-count b{color:var(--accent-ink);font-weight:700;font-size:17px}
+.rev-group{margin-top:14px}
+.rev-group .h3{display:flex;justify-content:space-between;gap:8px;padding-bottom:6px;border-bottom:1.5px solid var(--rule)}
+.rev-group .h3 span{font-weight:400;color:var(--ink-3)}
+.rev-item{display:flex;align-items:center;margin:0 -10px;border-bottom:1px solid var(--rule-2);border-radius:14px;transition:background .2s}
+.rev-main{flex:1;min-width:0;display:grid;grid-template-columns:32px 1fr auto;align-items:center;gap:10px;padding:12px 6px 12px 10px}
+.rev-read{flex:none;width:40px;height:40px;margin-right:4px;border-radius:12px;display:grid;place-items:center;color:var(--ink-3)}
+.rev-read svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.rev-name{font-weight:500;min-width:0}
+.rev-meta{font-size:12.5px;color:var(--ink-3);white-space:nowrap}
+.rev-err{display:inline-block;margin-left:6px;font-size:11.5px;font-weight:600;color:var(--err-ink);background:var(--err-soft);border-radius:999px;padding:1px 7px;vertical-align:1px}
+.mark{width:26px;height:26px;border-radius:50%;border:2px solid var(--rule);display:grid;place-items:center;font-size:13px;font-weight:700;color:var(--sheet);background:var(--sheet)}
+.is-g{background:var(--rev-soft)}
+.is-w{background:var(--err-soft)}
+.is-g .mark{border-color:var(--rev-ink);background:var(--rev-ink)}
+.is-w .mark{border-color:var(--err-ink);background:var(--err-ink)}
+.is-g .rev-meta{color:var(--rev-ink);font-weight:600}
+.is-w .rev-meta{color:var(--err-ink);font-weight:600}
+.rev-tools{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.hint{font-size:12.5px;color:var(--ink-3);margin-top:10px}
+.empty{padding:16px 0;color:var(--ink-2)}
+
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.tile{display:flex;flex-direction:column;justify-content:space-between;gap:18px;min-height:128px;padding:16px;border-radius:24px;background:var(--g-tile);text-align:left}
+.tile.alt{background:var(--g-quran)}
+.tile b{display:block;font-family:var(--f-display);font-size:21px;font-weight:700;line-height:1.1}
+.tile span{font-size:12.5px;color:var(--ink-2)}
+.tile-ar{font-family:var(--f-ar);font-size:34px;line-height:1;color:var(--accent-ink);align-self:flex-end}
+.tile svg{width:30px;height:30px;stroke:var(--accent-ink);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;align-self:flex-end}
+
+/* the ruled sheet */
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:13px;color:var(--ink-2)}
+.legend span{display:inline-flex;align-items:center;gap:7px}
+.sw{width:24px;height:12px;border-radius:6px;display:inline-block}
+.sw-n{background:var(--new)}
+.sw-g{background:var(--rev)}
+.sw-w{background:var(--err)}
+.grid-wrap{background:var(--sheet);border:1px solid var(--rule);border-radius:20px;overflow:auto;max-height:calc(100dvh - 300px);min-height:280px;overscroll-behavior:contain}
+.grid{border-collapse:separate;border-spacing:0;font-size:12px}
+.grid th,.grid td{border-right:1px solid var(--rule-2);border-bottom:1px solid var(--rule);padding:0;background:var(--sheet)}
+.grid thead th{position:sticky;top:0;z-index:2;vertical-align:bottom;height:142px;background:var(--rule-2);border-bottom:2px solid var(--accent)}
+.grid .c-num,.grid .c-date{position:sticky;z-index:1}
+.grid .c-num{left:0;width:30px;min-width:30px;text-align:center;color:var(--ink-3)}
+.grid .c-date{left:30px;width:66px;min-width:66px;border-right:2px solid var(--accent)}
+.grid thead .c-num,.grid thead .c-date{z-index:3}
+.grid thead .c-date{text-align:left;padding:0 0 8px 6px;font-weight:600;color:var(--ink-2);vertical-align:bottom}
+.grid .c-por{width:31px;min-width:31px}
+.vh{display:block;writing-mode:vertical-rl;transform:rotate(180deg);white-space:nowrap;padding:8px 0;margin:0 auto;font-weight:500;color:var(--ink);font-size:11.5px;max-height:136px;overflow:hidden;text-overflow:ellipsis}
+.c-por.is-cur .vh{color:var(--accent-ink);font-weight:700}
+.c-por.is-todo .vh{color:var(--ink-3);font-weight:400}
+.grid tbody td{height:32px}
+.daybtn{display:flex;flex-direction:column;justify-content:center;width:100%;height:32px;padding:0 6px;line-height:1.1}
+.daybtn small{color:var(--ink-3);font-size:10.5px}
+.cell{display:block;position:relative;width:100%;height:32px}
+.mk{position:absolute;top:7px;bottom:7px;left:0;right:-1px;background-image:repeating-linear-gradient(-62deg,var(--hatch) 0 1.3px,transparent 1.3px 4.5px)}
+.mk.a{left:3px;border-top-left-radius:9px;border-bottom-left-radius:9px}
+.mk.z{right:3px;border-top-right-radius:9px;border-bottom-right-radius:9px}
+.mk-g{background-color:var(--rev)}
+.mk-w{background-color:var(--err)}
+.mk-n{background-color:var(--new);display:grid;place-items:center;font-size:10.5px;font-weight:700;color:var(--ink)}
+.grid tr.is-today td{background:var(--new-soft)}
+.grid tr.is-today .c-date{font-weight:700}
+.grid tr.sheet-break td{height:28px;background:var(--g-tile);border-bottom:0}
+.sheet-label{position:sticky;left:8px;font-family:var(--f-display);font-style:italic;color:var(--accent-ink);font-size:14px;padding-left:8px}
+.grid-name{font-family:var(--f-display);font-style:italic;font-size:19px;color:var(--accent-ink)}
+
+/* progress */
+.hero{border-radius:28px;background:var(--g-quran);padding:18px}
+.hero-num{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.hero-num b{font-family:var(--f-display);font-size:72px;line-height:.9;font-weight:700;letter-spacing:-.02em}
+.hero-num span{font-size:16px;color:var(--ink-2)}
+.hero-sub{margin-top:10px;color:var(--ink-2)}
+.hero-sub strong{color:var(--ink);font-weight:600}
+.juz{display:grid;grid-template-columns:repeat(10,1fr);gap:5px;margin-top:12px}
+.jz{position:relative;aspect-ratio:3/4;max-width:100%;border-radius:9px;background:var(--rule-2);overflow:hidden;display:grid;place-items:end center}
+.jz i{position:absolute;left:0;right:0;bottom:0;background:var(--rev)}
+.jz.full i{background:var(--ok)}
+.jz span{position:relative;font-size:11px;font-weight:600;padding-bottom:3px;color:var(--ink-2)}
+.jz.lit span{color:var(--ink)}
+.heat{display:grid;grid-auto-flow:column;grid-template-rows:repeat(7,auto);gap:4px;margin-top:12px}
+.hd{display:block;width:100%;aspect-ratio:1;border-radius:4px;background:var(--rule-2)}
+.hd.on{background:var(--rev)}
+.hd.half{background:var(--rev-soft);box-shadow:inset 0 0 0 1.5px var(--rev)}
+.hd.hd-n{box-shadow:inset 0 -4px 0 var(--new)}
+.hd.now{outline:2px solid var(--accent);outline-offset:1px}
+.hd.pad{visibility:hidden}
+.stat-line{display:flex;gap:24px;flex-wrap:wrap;margin-top:12px}
+.stat-line div{display:flex;flex-direction:column}
+.stat-line b{font-family:var(--f-display);font-size:30px;font-weight:700;line-height:1.05;color:var(--accent-ink)}
+.stat-line span{font-size:12.5px;color:var(--ink-2)}
+.fresh{display:flex;flex-direction:column;margin-top:6px}
+.fr{display:grid;grid-template-columns:1fr 92px;gap:4px 14px;align-items:center;padding:10px 0;border-bottom:1px solid var(--rule-2);width:100%}
+.fr-name{font-weight:500;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.fr-bar{height:7px;border-radius:999px;background:var(--rule-2);overflow:hidden}
+.fr-bar i{display:block;height:100%;background:var(--rev);border-radius:999px}
+.fr-bar i.low{background:var(--new)}
+.fr-bar i.weak{background:var(--err)}
+.fr-meta{grid-column:1/-1;font-size:12px;color:var(--ink-3)}
+.weak-list{display:flex;flex-direction:column;margin-top:6px}
+.wk{display:grid;grid-template-columns:1fr auto;gap:2px 12px;align-items:center;padding:11px 0;border-bottom:1px solid var(--rule-2);width:100%}
+.wk-ar{grid-column:1/-1;font-family:var(--f-ar);direction:rtl;text-align:right;font-size:22px;line-height:1.9;color:var(--ink)}
+.wk-ar mark{background:var(--err-soft);color:var(--err-ink);border-radius:6px;padding:0 2px}
+.wk-ref{font-weight:500}
+.wk-n{font-size:12px;font-weight:600;color:var(--err-ink)}
+
+/* settings */
+.set{display:flex;flex-direction:column}
+.set-row{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:13px 0;border-bottom:1px solid var(--rule-2)}
+.set-row > div:first-child{min-width:0}
+.set-row .lbl{font-weight:500}
+.set-row .sub{font-size:12.5px;color:var(--ink-3)}
+.num{display:flex;align-items:center;gap:4px;flex:none}
+.num output{min-width:30px;text-align:center;font-weight:700;font-size:17px}
+.num button{width:36px;height:36px;border-radius:12px;background:var(--accent-soft);color:var(--accent-ink);font-size:19px;font-weight:600}
+.seg{display:grid;grid-template-columns:1fr 1fr;gap:4px;padding:4px;background:var(--rule-2);border-radius:16px}
+.seg button{padding:10px 8px;border-radius:12px;font-size:13.5px;font-weight:500;text-align:center;color:var(--ink-2)}
+.seg button[aria-pressed="true"]{background:var(--sheet);color:var(--ink);box-shadow:0 2px 8px rgba(91,70,140,.12)}
+.switch{position:relative;width:48px;height:29px;flex:none;border-radius:999px;background:var(--rule);transition:background .15s}
+.switch::after{content:"";position:absolute;top:3px;left:3px;width:23px;height:23px;border-radius:50%;background:var(--sheet);transition:transform .15s}
+.switch[aria-checked="true"]{background:var(--accent)}
+.switch[aria-checked="true"]::after{transform:translateX(19px)}
+.time-in{width:auto;min-width:124px;flex:none;text-align:center}
+.foot{font-size:12px;color:var(--ink-3);line-height:1.5}
+.foot a{color:var(--ink-2)}
+.danger{color:var(--err-ink)}
+
+/* Quran reader */
+.q-head{border-radius:28px;background:var(--g-quran);padding:16px 16px 14px;display:flex;flex-direction:column;gap:12px}
+.q-nav{display:grid;grid-template-columns:40px minmax(0,1fr) 40px;align-items:center;gap:6px}
+.q-arrow{width:40px;height:40px;border-radius:14px;background:var(--glass);display:grid;place-items:center}
+.q-arrow svg{width:18px;height:18px;stroke:var(--ink);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.q-title{display:flex;flex-direction:column;align-items:center;text-align:center;min-width:0;padding:2px 0}
+.q-ar{font-family:var(--f-ar);font-size:30px;line-height:1.5;direction:rtl}
+.q-ru{font-family:var(--f-display);font-size:21px;font-weight:700;line-height:1.1}
+.q-meta{font-size:12.5px;color:var(--ink-2);margin-top:2px}
+.q-tools{display:flex;gap:8px;align-items:center}
+.q-tools .seg{flex:1}
+.q-size{display:flex;gap:4px;flex:none}
+.q-size button{width:40px;height:44px;border-radius:14px;background:var(--glass);font-weight:700}
+.q-focus{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;padding:10px 12px;border-radius:16px;background:var(--glass);font-size:13.5px}
+.q-focus b{font-weight:600}
+.q-body{background:var(--sheet);border:1px solid var(--rule);border-radius:24px;padding:14px max(14px,3vw) 18px}
+.q-text{direction:rtl;font-family:var(--f-ar);font-size:var(--qsize,30px);line-height:2.3;text-align:justify;text-align-last:right;color:var(--ink);word-spacing:.04em}
+.basmala{font-family:var(--f-ar);font-size:calc(var(--qsize,30px) * .9);text-align:center;direction:rtl;line-height:2;color:var(--ink);padding:2px 0 6px}
+.w{border-radius:.3em;padding:0 .08em;cursor:pointer;transition:background-color .25s,color .25s;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.w:hover{background:var(--rule-2)}
+.w.saved{box-shadow:inset 0 -.12em 0 var(--err)}
+.hidetext .w:not(.peek){color:transparent;background:var(--rule-2)}
+.w.peek{background:var(--hint-soft)}
+.ano{display:inline-grid;place-items:center;min-width:1.55em;height:1.55em;margin:0 .18em;padding:0 .2em;border-radius:999px;background:var(--g-tile);color:var(--accent-ink);font-size:.52em;line-height:1;vertical-align:.32em;font-family:var(--f-ar)}
+.pmark{display:flex;align-items:center;gap:10px;direction:ltr;margin:.35em 0;font-family:var(--f-ui);font-size:12px;color:var(--ink-3);line-height:1.2}
+.pmark::before,.pmark::after{content:"";flex:1;height:1px;background:var(--rule)}
+.q-load{display:flex;flex-direction:column;gap:12px;align-items:flex-start;padding:8px 2px}
+.q-src{font-size:12px;color:var(--ink-3);line-height:1.5}
+.q-src a{color:var(--ink-2)}
+.pick-search{position:sticky;top:0;z-index:1;background:var(--paper);padding-bottom:8px}
+.sr-row{display:grid;grid-template-columns:34px 1fr auto;gap:10px;align-items:center;padding:10px 2px;border-bottom:1px solid var(--rule-2);width:100%}
+.sr-n{width:30px;height:30px;border-radius:10px;background:var(--g-tile);display:grid;place-items:center;font-size:12px;font-weight:700;color:var(--accent-ink)}
+.sr-ru{font-weight:500}
+.sr-sub{display:block;font-size:12px;color:var(--ink-3)}
+.sr-ar{font-family:var(--f-ar);font-size:20px;direction:rtl}
+
+/* bottom sheet */
+.scrim{position:fixed;inset:0;background:var(--scrim);z-index:40;opacity:0;transition:opacity .2s}
+.scrim.open{opacity:1}
+.sheet{position:fixed;left:0;right:0;bottom:0;z-index:41;max-height:92dvh;display:flex;flex-direction:column;background:var(--paper);border-radius:28px 28px 0 0;box-shadow:var(--shadow);transform:translateY(100%);transition:transform .25s cubic-bezier(.2,.8,.2,1);padding-bottom:env(safe-area-inset-bottom,0px)}
+.sheet.open{transform:none}
+.sheet-in{width:100%;max-width:560px;margin:0 auto;display:flex;flex-direction:column;min-height:0;flex:1}
+.sheet-top{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:18px max(16px,env(safe-area-inset-right,0px)) 10px max(16px,env(safe-area-inset-left,0px))}
+.sheet-top .h2{font-size:26px}
+.x{width:36px;height:36px;border-radius:50%;background:var(--rule-2);display:grid;place-items:center;flex:none}
+.x svg{width:16px;height:16px;stroke:var(--ink);stroke-width:2;fill:none}
+.sheet-body{overflow:auto;padding:4px max(16px,env(safe-area-inset-right,0px)) 18px max(16px,env(safe-area-inset-left,0px));display:flex;flex-direction:column;gap:16px;min-height:0}
+.sheet-foot{padding:10px max(16px,env(safe-area-inset-right,0px)) 14px max(16px,env(safe-area-inset-left,0px));display:flex;gap:8px;border-top:1px solid var(--rule)}
+.sheet-foot .btn{flex:1}
+
+.pick{display:flex;flex-direction:column}
+.pk{display:grid;grid-template-columns:26px 1fr auto;gap:10px;align-items:center;padding:11px 2px;border-bottom:1px solid var(--rule-2);width:100%}
+.pk .box{width:23px;height:23px;border-radius:8px;border:2px solid var(--rule);display:grid;place-items:center;color:var(--sheet);font-size:13px;font-weight:700;background:var(--sheet)}
+.pk.on .box{background:var(--rev-ink);border-color:var(--rev-ink)}
+.pk.part .box{background:var(--new);border-color:var(--new)}
+.pk .meta{font-size:12px;color:var(--ink-3);white-space:nowrap}
+.pk-sep{font-family:var(--f-display);font-style:italic;color:var(--accent-ink);padding:14px 0 4px;font-size:16px;font-weight:500}
+.choice{display:flex;flex-direction:column;gap:4px;width:100%;padding:14px 16px;border:2px solid var(--rule);border-radius:20px;background:var(--sheet)}
+.choice b{font-family:var(--f-display);font-size:21px;font-weight:700}
+.choice span{font-size:13.5px;color:var(--ink-2)}
+.choice[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft)}
+.menu{display:flex;flex-direction:column;border:1px solid var(--rule);border-radius:18px;background:var(--sheet);overflow:hidden}
+.menu button{padding:14px 16px;border-bottom:1px solid var(--rule-2);font-weight:500}
+.menu button:last-child{border-bottom:0}
+.onb-band{border-radius:26px;background:var(--g-dawn);padding:22px 20px 24px;display:flex;flex-direction:column;gap:16px}
+.onb-mark{width:84px;height:84px;stroke:var(--ink);fill:none;stroke-width:1.1;stroke-linecap:round;stroke-linejoin:round}
+.onb-title{font-family:var(--f-display);font-size:40px;font-weight:700;line-height:1;letter-spacing:-.01em;text-wrap:balance}
+.lead{font-size:16px;line-height:1.5;color:var(--ink-2);max-width:60ch}
+.step-dots{display:flex;gap:6px}
+.step-dots i{width:20px;height:5px;border-radius:3px;background:var(--rule)}
+.step-dots i.on{background:var(--accent)}
+
+/* self-test */
+.ref{font-size:13px;color:var(--ink-2)}
+.ar{font-family:var(--f-ar);direction:rtl;text-align:right;font-size:28px;line-height:2.1;color:var(--ink)}
+.ar .hid{color:transparent;background:var(--rule-2);border-radius:8px;user-select:none}
+.ar-next{opacity:.5;font-size:24px}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.opt{padding:13px 10px;border:2px solid var(--rule);border-radius:16px;background:var(--sheet);font-weight:500;text-align:center}
+.opt.right{border-color:var(--ok);background:var(--ok-soft)}
+.opt.wrong{border-color:var(--err);background:var(--err-soft)}
+.play{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:14px;color:var(--accent-ink)}
+.play svg{width:32px;height:32px;fill:var(--accent-ink)}
+.err{padding:14px;border-radius:16px;background:var(--err-soft);font-size:14px}
+.note{padding:14px;border-radius:18px;background:var(--g-tile);font-size:14px;line-height:1.5}
+
+.toast{position:fixed;left:50%;bottom:calc(88px + env(safe-area-inset-bottom,0px));transform:translateX(-50%) translateY(10px);z-index:60;background:var(--ink);color:var(--paper);padding:11px 16px;border-radius:16px;font-size:14px;font-weight:500;max-width:min(440px,calc(100% - 32px));opacity:0;transition:opacity .2s,transform .2s;pointer-events:none;text-align:center}
+.toast.show{opacity:1;transform:translateX(-50%)}
+
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+@media (max-width:370px){.date{font-size:36px}.streak-n{font-size:44px}.hero-num b{font-size:58px}.new-title{font-size:29px}.tab .ic{width:44px}}
+</style>
+</head>
+<body>
+<div class="app">
+  <main id="view" class="view" aria-live="polite"></main>
+</div>
+
+<nav class="tabs" aria-label="Разделы">
+  <div class="tabs-in">
+    <button class="tab" data-act="tab" data-tab="today"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 18.5h18M6.5 18.5a5.5 5.5 0 0 1 11 0M12 5v3M4.8 9.8l2 2M19.2 9.8l-2 2"/></svg></span>Сегодня</button>
+    <button class="tab" data-act="tab" data-tab="quran"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 6.8C10.2 5.4 7.3 4.8 3.5 5.2v12.6c3.8-.4 6.7.2 8.5 1.6 1.8-1.4 4.7-2 8.5-1.6V5.2c-3.8-.4-6.7.2-8.5 1.6z"/><path d="M12 6.8v12.6"/></svg></span>Коран</button>
+    <button class="tab" data-act="tab" data-tab="table"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="2"/><path d="M3.5 9.5h17M3.5 14.5h17M9 4.5v15M14.5 4.5v15"/></svg></span>Таблица</button>
+    <button class="tab" data-act="tab" data-tab="progress"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 20V12M10 20V6M15 20v-9M20 20V4"/></svg></span>Прогресс</button>
+    <button class="tab" data-act="tab" data-tab="more"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="5.5" cy="12" r="1.3"/><circle cx="12" cy="12" r="1.3"/><circle cx="18.5" cy="12" r="1.3"/></svg></span>Ещё</button>
+  </div>
+</nav>
+
+<div id="scrim" class="scrim" hidden data-act="close-sheet"></div>
+<section id="sheet" class="sheet" hidden role="dialog" aria-modal="true" aria-labelledby="sheet-title">
+  <div class="sheet-in">
+    <div class="sheet-top"><h2 class="h2" id="sheet-title"></h2><button class="x" data-act="close-sheet" aria-label="Закрыть"><svg viewBox="0 0 16 16"><path d="M3 3l10 10M13 3 3 13"/></svg></button></div>
+    <div class="sheet-body" id="sheet-body"></div>
+    <div class="sheet-foot" id="sheet-foot" hidden></div>
+  </div>
+</section>
+<div id="toast" class="toast" role="status"></div>
+
+<script>
+(function () {
+'use strict';
+
+/* ================= Quran reference data ================= */
+const NAMES = [null,'Фатиха','Бакара','Аль Имран','Ниса','Маида','Анам','Араф','Анфаль','Тауба','Юнус','Худ','Юсуф','Раад','Ибрахим','Хиджр','Нахль','Исра','Кахф','Марьям','Та Ха','Анбия','Хадж','Муминун','Нур','Фуркан','Шуара','Намль','Касас','Анкабут','Рум','Лукман','Саджда','Ахзаб','Саба','Фатыр','Йа Син','Саффат','Сад','Зумар','Гафир','Фуссылат','Шура','Зухруф','Духан','Джасия','Ахкаф','Мухаммад','Фатх','Худжурат','Каф','Зарият','Тур','Наджм','Камар','Рахман','Вакиа','Хадид','Муджадила','Хашр','Мумтахана','Сафф','Джумуа','Мунафикун','Тагабун','Талак','Тахрим','Мульк','Калам','Хакка','Мааридж','Нух','Джинн','Муззаммиль','Муддассир','Кыяма','Инсан','Мурсалят','Наба','Назиат','Абаса','Таквир','Инфитар','Мутаффифин','Иншикак','Бурудж','Тарик','Аля','Гашия','Фаджр','Балад','Шамс','Лайль','Духа','Шарх','Тин','Алак','Кадр','Баййина','Зальзаля','Адият','Кариа','Такасур','Аср','Хумаза','Филь','Курайш','Маун','Каусар','Кафирун','Наср','Масад','Ихлас','Фаляк','Нас'];
+const AY = [0,7,286,200,176,120,165,206,75,129,109,123,111,43,52,99,128,111,110,98,135,112,78,118,64,77,227,93,88,69,60,34,30,73,54,45,83,182,88,75,85,54,53,89,59,37,35,38,29,18,45,60,49,62,55,78,96,29,22,24,13,14,11,11,18,12,12,30,52,52,44,28,28,20,56,40,31,50,40,46,42,29,19,36,25,22,17,19,26,30,20,15,21,11,8,8,19,5,8,8,11,11,8,3,9,5,4,7,3,6,3,5,4,5,6];
+const JUZ = [[1,1],[2,142],[2,253],[3,93],[4,24],[4,148],[5,82],[6,111],[7,88],[8,41],[9,93],[11,6],[12,53],[15,1],[17,1],[18,75],[21,1],[23,1],[25,21],[27,56],[29,46],[33,31],[36,28],[39,32],[41,47],[46,1],[51,31],[58,1],[67,1],[78,1]];
+/* short surahs grouped the way the paper sheet groups them */
+const GROUPS = [[91,92],[93,94],[95,96],[97,98],[99,100],[101,102],[103,104,105],[106,107,108],[109,110,111],[112,113,114]];
+const CUM = [0, 0]; for (let s = 1; s < 114; s++) CUM[s + 1] = CUM[s] + AY[s];
+const TOTAL = CUM[114] + AY[114];               // 6236
+const G = (s, a) => CUM[s] + a;                 // global ayah number
+const JUZG = JUZ.map(([s, a]) => G(s, a)); JUZG.push(TOTAL + 1);
+const JUZP = [21].concat(Array(28).fill(20), [23]); // pages per juz, Madinah mushaf (604)
+const JUZ_OF = new Uint8Array(TOTAL + 1);
+const PG = new Float64Array(TOTAL + 1);        // cumulative pages up to ayah g
+for (let j = 0; j < 30; j++) {
+  const dens = JUZP[j] / (JUZG[j + 1] - JUZG[j]);
+  for (let g = JUZG[j]; g < JUZG[j + 1]; g++) { JUZ_OF[g] = j + 1; PG[g] = PG[g - 1] + dens; }
+}
+const pagesOf = (s, f, t) => PG[G(s, t)] - PG[G(s, f) - 1];
+
+/* ================= helpers ================= */
+const $ = (q, el = document) => el.querySelector(q);
+const esc = v => String(v).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const pad = n => String(n).padStart(2, '0');
+const iso = d => `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
+const parseD = s => new Date(s + 'T12:00:00');
+const today = () => iso(new Date());
+const addDays = (s, n) => { const d = parseD(s); d.setDate(d.getDate() + n); return iso(d); };
+const daysBetween = (a, b) => Math.round((parseD(b) - parseD(a)) / 864e5);
+const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+function plural(n, one, few, many) { const a = Math.abs(n) % 100, b = a % 10; if (a > 10 && a < 20) return many; if (b > 1 && b < 5) return few; if (b === 1) return one; return many; }
+const ayahs = n => `${n.toLocaleString('ru-RU')} ${plural(n, 'аят', 'аята', 'аятов')}`;
+const daysW = n => `${n} ${plural(n, 'день', 'дня', 'дней')}`;
+const fmtPages = p => p < 1 ? '< 1 стр.' : `${p < 10 ? (Math.round(p * 2) / 2).toString().replace('.', ',') : Math.round(p)} стр.`;
+function fmt(d, o) { return new Intl.DateTimeFormat('ru-RU', o).format(d); }
+function hijri(d) {
+  try {
+    const p = new Intl.DateTimeFormat('ru-RU-u-ca-islamic-umalqura', { day: 'numeric', month: 'long', year: 'numeric' }).formatToParts(d);
+    const g = t => (p.find(x => x.type === t) || {}).value || '';
+    return `${g('day')} ${g('month')} ${g('year')} г. х.`;
+  } catch (e) { return ''; }
+}
+const cap = s => s.charAt(0).toUpperCase() + s.slice(1);
+function rng(seed) { let x = seed >>> 0; return () => { x ^= x << 13; x >>>= 0; x ^= x >> 17; x ^= x << 5; x >>>= 0; return x / 4294967296; }; }
+
+/* ================= portions (columns of the sheet) ================= */
+const pid = parts => parts.map(x => `${x.s}:${x.f}-${x.t}`).join('+');
+const mk = parts => ({ id: pid(parts), parts });
+const pAyahs = p => p.parts.reduce((n, x) => n + x.t - x.f + 1, 0);
+const pPages = p => p.parts.reduce((n, x) => n + pagesOf(x.s, x.f, x.t), 0);
+const pMax = p => Math.max(...p.parts.map(x => x.s));
+function pTitle(p) {
+  if (p.parts.length > 1) return p.parts.map(x => NAMES[x.s]).join(' · ');
+  const x = p.parts[0];
+  return (x.f === 1 && x.t === AY[x.s]) ? NAMES[x.s] : `${NAMES[x.s]} ${x.f}–${x.t}`;
+}
+function defaultPortions() {
+  const out = [], inGroup = {};
+  GROUPS.forEach(g => g.forEach(s => { inGroup[s] = g; }));
+  for (let s = 1; s <= 114; s++) {
+    const g = inGroup[s];
+    if (g) { if (g[0] === s) out.push(mk(g.map(x => ({ s: x, f: 1, t: AY[x] })))); continue; }
+    const pg = pagesOf(s, 1, AY[s]);
+    if (pg > 3.5) {
+      const n = Math.round(pg / 2.5); let f = 1;
+      for (let k = 1; k <= n; k++) {
+        let t;
+        if (k === n) t = AY[s];
+        else {
+          const target = PG[G(s, 1) - 1] + pg * k / n; t = f;
+          while (t < AY[s] - (n - k) && PG[G(s, t)] < target) t++;
+        }
+        out.push(mk([{ s, f, t }])); f = t + 1;
+      }
+    } else out.push(mk([{ s, f: 1, t: AY[s] }]));
+  }
+  return out;
+}
+const byMushaf = (a, b) => a.parts[0].s - b.parts[0].s || a.parts[0].f - b.parts[0].f;
+
+/* ================= state ================= */
+const LS = 'hifz.v1';
+let S = null;
+let TG = null;
+const FRAMED = (() => { try { return window.self !== window.top; } catch (e) { return true; } })();
+const ui = { tab: 'today', sheet: null, gridPos: null, testMode: 'cont', onb: null, q: { s: 0, mode: '' }, peek: null };
+
+function fresh() {
+  return { v: 1, u: Date.now(), name: '', dir: 'end', near: 3, cycle: 7, portions: defaultPortions(), memo: {}, log: {}, rem: { time: '20:00' }, demo: false };
+}
+function loadLocal() { try { const t = localStorage.getItem(LS); return t ? JSON.parse(t) : null; } catch (e) { return null; } }
+function save() {
+  S.u = Date.now();
+  try { localStorage.setItem(LS, JSON.stringify(S)); } catch (e) { /* storage may be unavailable */ }
+  cloudSave();
+}
+const pById = id => S.portions.find(p => p.id === id);
+
+function learnOrder() {
+  const arr = S.portions.slice();
+  arr.sort(S.dir === 'end'
+    ? (a, b) => pMax(b) - pMax(a) || a.parts[0].f - b.parts[0].f
+    : byMushaf);
+  return arr;
+}
+function partsLearn(p) { return S.dir === 'end' ? p.parts.slice().sort((a, b) => b.s - a.s || a.f - b.f) : p.parts; }
+/* cumulative position l inside a portion -> readable label */
+function posAt(p, l) {
+  let rem = l;
+  for (const x of partsLearn(p)) { const n = x.t - x.f + 1; if (rem <= n) return { s: x.s, a: x.f + rem - 1 }; rem -= n; }
+  return null;
+}
+function posLabel(p, l) {
+  if (!l || l <= 0) return 'ещё не начато';
+  if (l >= pAyahs(p)) return 'выучено целиком';
+  const at = posAt(p, l);
+  return (p.parts.length > 1 ? NAMES[at.s] + ', ' : '') + `до ${at.a} аята`;
+}
+const currentPortion = () => learnOrder().find(p => !(S.memo[p.id] && S.memo[p.id].d)) || null;
+const isDone = p => !!(S.memo[p.id] && S.memo[p.id].d);
+
+function dayEntry(d, create) { let e = S.log[d]; if (!e && create) e = S.log[d] = { r: {} }; return e; }
+function planIds(e) { if (!e || !e.plan) return []; return [...e.plan.near, ...e.plan.far, ...(e.x || [])].filter((v, i, a) => a.indexOf(v) === i && pById(v)); }
+function dayDone(d) {
+  const e = S.log[d]; if (!e) return false;
+  const ids = planIds(e), r = e.r || {};
+  if (ids.length) return ids.every(id => r[id]);
+  return Object.keys(r).length > 0 || Object.keys(e.n || {}).length > 0;
+}
+function streakAt(d) { let n = 0; let x = dayDone(d) ? d : addDays(d, -1); while (dayDone(x)) { n++; x = addDays(x, -1); } return n; }
+function bestStreak() {
+  let best = 0, run = 0, prev = null;
+  for (const d of Object.keys(S.log).sort()) { if (!dayDone(d)) continue; run = prev && daysBetween(prev, d) === 1 ? run + 1 : 1; best = Math.max(best, run); prev = d; }
+  return best;
+}
+function revIndex(before) {
+  const m = {};
+  for (const d of Object.keys(S.log).sort()) { if (before && d >= before) break; const r = S.log[d].r || {}; for (const id in r) m[id] = { d, q: r[id] }; }
+  return m;
+}
+const interval = q => q === 'w' ? Math.max(1, Math.ceil(S.cycle / 2)) : Math.max(1, S.cycle);
+
+/* Daily review plan:
+   near — the last N memorized portions plus the learned part of the current one, every day;
+   far  — everything older, rotated so the whole lot comes round once per cycle;
+          portions marked "с ошибками" come back twice as often. */
+function buildPlan(date) {
+  const done = learnOrder().filter(isDone);
+  const nN = Math.min(S.near, done.length);
+  const near = done.slice(done.length - nN).map(p => p.id);
+  const cur = currentPortion();
+  if (cur && (S.memo[cur.id] || {}).l > 0) near.push(cur.id);
+  const farP = done.slice(0, done.length - nN);
+  const rev = revIndex(date), C = Math.max(1, S.cycle);
+  const load = farP.reduce((n, p) => n + pPages(p), 0) / C;
+  const scored = farP.map((p, i) => {
+    const r = rev[p.id], m = S.memo[p.id]; let since, q = 'g';
+    if (r) { since = daysBetween(r.d, date); q = r.q; }
+    else if (m.d && m.d !== 'pre') since = daysBetween(m.d, date);
+    else since = C * (1 + (farP.length - i) / Math.max(1, farP.length));
+    return { p, since, due: since / interval(q) };
+  });
+  scored.sort((a, b) => b.due - a.due || b.since - a.since);
+  const far = []; let sum = 0;
+  for (const x of scored) {
+    const w = pPages(x.p);
+    if (!far.length || sum + w / 2 <= load || (x.due >= 1 && sum + w <= 1.6 * load)) { far.push(x.p.id); sum += w; }
+  }
+  const ord = id => S.portions.findIndex(p => p.id === id);
+  far.sort((a, b) => ord(a) - ord(b));
+  return { near, far };
+}
+function ensurePlan(d) {
+  const e = S.log[d];
+  if (e && e.plan) return e;
+  const plan = buildPlan(d);
+  if (!plan.near.length && !plan.far.length) return e || null;
+  const en = dayEntry(d, true); en.plan = plan; save();
+  return en;
+}
+function setLearned(p, l, d) {
+  const m = S.memo[p.id] || (S.memo[p.id] = { l: 0 });
+  const tot = pAyahs(p); l = clamp(l, 0, tot);
+  m.l = l;
+  const e = dayEntry(d, true); e.n = e.n || {};
+  if (l > 0) e.n[p.id] = l; else delete e.n[p.id];
+  let finished = false;
+  if (l >= tot && !m.d) { m.d = d; finished = true; }
+  else if (l < tot && m.d === d) delete m.d;
+  return finished;
+}
+function cycleMark(d, id) {
+  const e = dayEntry(d, true); e.r = e.r || {};
+  const v = e.r[id];
+  if (!v) e.r[id] = 'g'; else if (v === 'g') e.r[id] = 'w'; else delete e.r[id];
+  return e.r[id];
+}
+function learnedSet() {
+  const L = new Uint8Array(TOTAL + 1);
+  for (const p of S.portions) {
+    const m = S.memo[p.id]; if (!m) continue;
+    const n = m.d ? pAyahs(p) : (m.l || 0); let rem = n;
+    for (const x of partsLearn(p)) { for (let a = x.f; a <= x.t && rem > 0; a++, rem--) L[G(x.s, a)] = 1; }
+  }
+  return L;
+}
+
+/* ================= demo data (a realistic month like the paper sheet) ================= */
+function makeDemo() {
+  const st = fresh(); S = st; st.demo = true;
+  const R = rng(20261027);
+  const start = addDays(today(), -42);
+  for (const p of S.portions) if (pMax(p) >= 87) S.memo[p.id] = { l: pAyahs(p), d: 'pre' };
+  S.err = { '84:6:2': { n: 2, d: addDays(today(), -2) }, '85:9:1': { n: 1, d: addDays(today(), -4) }, '85:9:2': { n: 1, d: addDays(today(), -4) }, '86:7:0': { n: 1, d: addDays(today(), -6) }, '87:4:1': { n: 1, d: addDays(today(), -1) } };
+  const skip = new Set([3, 11, 12, 24, 33].map(k => addDays(start, k)));
+  for (let k = 0; k < 42; k++) {
+    const d = addDays(start, k);
+    if (skip.has(d)) continue;
+    const e = ensurePlan(d) || dayEntry(d, true);
+    for (const id of planIds(e)) e.r[id] = R() < 0.11 ? 'w' : 'g';
+    const cur = currentPortion();
+    if (cur && R() < 0.8) setLearned(cur, ((S.memo[cur.id] || {}).l || 0) + 1 + Math.floor(R() * 3), d);
+  }
+  S = st; save();
+}
+
+/* ================= Telegram Mini App bridge ================= */
+function initTelegram(cb) {
+  const ready = () => {
+    const w = window.Telegram && window.Telegram.WebApp;
+    if (w && w.initData) {
+      TG = w;
+      try {
+        TG.ready(); TG.expand();
+        if (TG.isVersionAtLeast && TG.isVersionAtLeast('7.7')) TG.disableVerticalSwipes();
+        applyTgTheme(); TG.onEvent('themeChanged', applyTgTheme);
+        TG.BackButton.onClick(closeSheet);
+      } catch (e) { /* older clients */ }
+    }
+    cb();
+  };
+  if (window.Telegram && window.Telegram.WebApp) return ready();
+  if (/tgWebAppData/.test(location.hash)) {
+    const sc = document.createElement('script');
+    sc.src = 'https://telegram.org/js/telegram-web-app.js';
+    sc.onload = ready; sc.onerror = () => cb();
+    document.head.appendChild(sc);
+  } else cb();
+}
+function applyTgTheme() {
+  if (!TG) return;
+  document.documentElement.setAttribute('data-theme', TG.colorScheme === 'dark' ? 'dark' : 'light');
+  const bg = getComputedStyle(document.documentElement).getPropertyValue('--paper').trim();
+  try { if (TG.isVersionAtLeast('6.1')) { TG.setHeaderColor(bg); TG.setBackgroundColor(bg); } } catch (e) { /* noop */ }
+}
+const haptic = (kind) => { try { if (!TG) return; if (kind === 'ok') TG.HapticFeedback.notificationOccurred('success'); else TG.HapticFeedback.impactOccurred('light'); } catch (e) { /* noop */ } };
+const hasCloud = () => TG && TG.CloudStorage && TG.isVersionAtLeast && TG.isVersionAtLeast('6.9');
+let cloudTimer = null;
+function cloudSave() {
+  if (!hasCloud()) return;
+  clearTimeout(cloudTimer);
+  cloudTimer = setTimeout(() => {
+    const s = JSON.stringify(S), size = 3800, n = Math.ceil(s.length / size);
+    let i = 0;
+    const next = () => {
+      if (i >= n) { TG.CloudStorage.setItem('sn', `${n}|${S.u}`); return; }
+      const k = 's' + i; TG.CloudStorage.setItem(k, s.slice(i * size, (i + 1) * size), next); i++;
+    };
+    next();
+  }, 700);
+}
+function cloudLoad(cb) {
+  if (!hasCloud()) return cb(null);
+  TG.CloudStorage.getItem('sn', (err, v) => {
+    if (err || !v) return cb(null);
+    const [n, u] = v.split('|').map(Number);
+    if (S && S.u >= u) return cb(null);
+    const keys = Array.from({ length: n }, (_, i) => 's' + i);
+    TG.CloudStorage.getItems(keys, (e2, vals) => {
+      if (e2 || !vals) return cb(null);
+      try { cb(JSON.parse(keys.map(k => vals[k] || '').join(''))); } catch (e) { cb(null); }
+    });
+  });
+}
+/* ================= views ================= */
+const BOOK_PATHS = '<path d="M12 6C10.3 4.7 7.6 4.2 4 4.6v10.2c3.6-.4 6.3.1 8 1.4 1.7-1.3 4.4-1.8 8-1.4V4.6c-3.6-.4-6.3.1-8 1.4z"/><path d="M12 6v10.2M7.6 21.4 16.4 16.2M16.4 21.4 7.6 16.2"/>';
+const ICON_BOOK = `<svg viewBox="0 0 24 24" aria-hidden="true">${BOOK_PATHS}</svg>`;
+const ICON_BOOK_BIG = `<svg class="onb-mark" viewBox="0 0 24 24" aria-hidden="true">${BOOK_PATHS}<path d="M6 7.4c1.8-.2 3.3 0 4.5.6M6 9.9c1.8-.2 3.3 0 4.5.6M6 12.4c1.8-.2 3.3 0 4.5.6M18 7.4c-1.8-.2-3.3 0-4.5.6M18 9.9c-1.8-.2-3.3 0-4.5.6M18 12.4c-1.8-.2-3.3 0-4.5.6" stroke-width=".7"/></svg>`;
+
+function vToday() {
+  const d = today(), dt = parseD(d);
+  const e = ensurePlan(d);
+  const cur = currentPortion();
+  const st = streakAt(d);
+  let dots = '';
+  for (let i = 6; i >= 0; i--) { const dd = addDays(d, -i); dots += `<i class="dot${dayDone(dd) ? ' on' : ''}${i === 0 ? ' now' : ''}" title="${fmt(parseD(dd), { weekday: 'short', day: 'numeric' })}"></i>`; }
+  const ids = planIds(e), r = (e && e.r) || {};
+  const marked = ids.filter(id => r[id]).length;
+  const complete = ids.length > 0 && marked === ids.length;
+
+  let h = '';
+  if (S.demo) h += `<div class="demo-note"><span>Это пример заполненного дневника.</span><button data-act="start-own">Начать свой</button></div>`;
+  h += `<header class="band${complete ? ' is-done' : ''}">
+    <div class="band-top">
+      <div class="brandmark">${ICON_BOOK}<span>${cap(fmt(dt, { weekday: 'long' }))}</span></div>
+      <div class="dots" aria-label="Последние 7 дней">${dots}</div>
+      <h1 class="date">${fmt(dt, { day: 'numeric', month: 'long' })}</h1>
+      <div class="streak"><div class="streak-n">${st}</div><span class="streak-l">${plural(st, 'день', 'дня', 'дней')} подряд</span></div>
+      <div class="hijri">${hijri(dt)}</div>
+    </div>
+    <div class="band-prog">
+      <div class="between"><span>${complete ? 'Повторение на сегодня сделано' : ids.length ? 'Повторение на сегодня' : 'Повторять пока нечего'}</span>${ids.length ? `<b>${marked} из ${ids.length}</b>` : ''}</div>
+      ${ids.length ? `<div class="band-bar" aria-hidden="true"><i style="width:${(marked / ids.length * 100).toFixed(1)}%"></i></div>` : ''}
+    </div>
+  </header>`;
+
+  /* new memorization */
+  if (!cur) {
+    h += `<section class="new-card"><span class="ribbon" aria-hidden="true"></span><h2 class="new-kicker">Новое</h2><div class="new-title">Весь план выучен. Машаа Ллах!</div><p class="today-note">Участки можно изменить в разделе «Ещё».</p></section>`;
+  } else {
+    const l = (S.memo[cur.id] || {}).l || 0, tot = pAyahs(cur);
+    const others = Object.keys((e && e.n) || {}).filter(id => id !== cur.id && pById(id));
+    h += `<section class="new-card" aria-labelledby="h-new"><span class="ribbon" aria-hidden="true"></span>
+      <h2 class="new-kicker" id="h-new">Новое</h2>
+      <div class="new-title">${esc(pTitle(cur))}</div>
+      <div class="new-pos">${posLabel(cur, l)} <span>из ${ayahs(tot)}, ${fmtPages(pPages(cur))}</span></div>
+      <div class="meter" aria-hidden="true"><i style="width:${(l / tot * 100).toFixed(1)}%"></i></div>
+      <div class="stepper">
+        <button class="btn btn-glass btn-sq" data-act="new-step" data-v="-1" aria-label="На один аят меньше" ${l <= 0 ? 'disabled' : ''}>−</button>
+        <button class="btn btn-ink" data-act="new-step" data-v="1">+ аят</button>
+        <button class="btn btn-glass" data-act="new-all">Выучен целиком</button>
+      </div>
+      ${others.length ? `<div class="today-note">Сегодня также: ${others.map(id => esc(pTitle(pById(id))) + ' — ' + posLabel(pById(id), e.n[id])).join('; ')}</div>` : ''}
+    </section>`;
+  }
+
+  /* review */
+  h += `<section aria-labelledby="h-rev"><div class="rev-head"><h2 class="h2" id="h-rev">Повторение</h2>${ids.length ? `<span class="rev-count"><b>${marked}</b> из ${ids.length}</span>` : ''}</div>`;
+  if (!ids.length) {
+    h += `<p class="empty">Повторять пока нечего. Когда участок будет выучен, он появится здесь. Уже выученное можно отметить в разделе «Ещё» → «Участки».</p>`;
+  } else {
+    const grp = (title, sub, list) => list.length ? `<div class="rev-group"><h3 class="h3">${title}<span>${sub}</span></h3>${list.map(id => revItem(id, r[id])).join('')}</div>` : '';
+    h += grp('Ближнее', 'каждый день', e.plan.near);
+    h += grp('Дальнее', `весь круг за ${daysW(S.cycle)}`, e.plan.far);
+    h += grp('Добавлено', 'по вашему выбору', (e.x || []).filter(id => pById(id)));
+    h += `<p class="hint">Нажмите один раз — повторено, ещё раз — с ошибками: такой участок вернётся в план раньше. Книжка справа открывает участок в Коране.</p>`;
+  }
+  if (S.portions.some(isDone)) h += `<div class="rev-tools"><button class="btn btn-line" data-act="add-extra">Добавить участок</button>${e && e.plan && marked && !complete ? `<button class="btn btn-line" data-act="rebuild">Собрать план заново</button>` : ''}</div>`;
+  h += `</section>`;
+
+  h += `<div class="tiles">
+    <button class="tile" data-act="open-quran"><span><b>Коран по памяти</b><span>Текст скрыт — проверяйте себя по слову и отмечайте ошибки</span></span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 6.8C10.2 5.4 7.3 4.8 3.5 5.2v12.6c3.8-.4 6.7.2 8.5 1.6 1.8-1.4 4.7-2 8.5-1.6V5.2c-3.8-.4-6.7.2-8.5 1.6z"/><path d="M12 6.8v12.6"/></svg></button>
+    ${S.portions.some(isDone) ? `<button class="tile alt" data-act="open-test"><span><b>Проверь себя</b><span>Продолжи аят или угадай суру</span></span><span class="tile-ar" lang="ar" aria-hidden="true">اقْرَأْ</span></button>` : ''}
+  </div>`;
+  return h;
+}
+function portionErrs(p) {
+  let n = 0;
+  for (const k in (S.err || {})) { const [s, a] = k.split(':').map(Number); if (p.parts.some(x => x.s === s && a >= x.f && a <= x.t)) n++; }
+  return n;
+}
+function revItem(id, v) {
+  const p = pById(id), ne = portionErrs(p);
+  return `<div class="rev-item ${v === 'g' ? 'is-g' : v === 'w' ? 'is-w' : ''}">
+    <button class="rev-main" data-act="mark" data-id="${esc(id)}" aria-label="${esc(pTitle(p))}">
+      <span class="mark" aria-hidden="true">${v === 'g' ? '✓' : v === 'w' ? '!' : ''}</span>
+      <span class="rev-name">${esc(pTitle(p))}${ne ? `<span class="rev-err" title="Слабые места">${ne}</span>` : ''}</span>
+      <span class="rev-meta">${v === 'g' ? 'повторено' : v === 'w' ? 'с ошибками' : fmtPages(pPages(p))}</span></button>
+    <button class="rev-read" data-act="read-portion" data-id="${esc(id)}" aria-label="Читать: ${esc(pTitle(p))}"><svg viewBox="0 0 24 24"><path d="M12 6.8C10.2 5.4 7.3 4.8 3.5 5.2v12.6c3.8-.4 6.7.2 8.5 1.6 1.8-1.4 4.7-2 8.5-1.6V5.2c-3.8-.4-6.7.2-8.5 1.6z"/><path d="M12 6.8v12.6"/></svg></button>
+  </div>`;
+}
+function gridColumns() {
+  const used = new Set();
+  for (const p of S.portions) { const m = S.memo[p.id]; if (m && (m.d || m.l)) used.add(p.id); }
+  for (const d in S.log) { const e = S.log[d]; Object.keys(e.r || {}).forEach(id => used.add(id)); Object.keys(e.n || {}).forEach(id => used.add(id)); }
+  const upcoming = learnOrder().filter(p => !isDone(p)).slice(0, 3);
+  upcoming.forEach(p => used.add(p.id));
+  return S.portions.filter(p => used.has(p.id));
+}
+function vTable() {
+  const cols = gridColumns(), d0 = today();
+  const cur = currentPortion();
+  const days = Object.keys(S.log).filter(d => { const e = S.log[d]; return e.m || Object.keys(e.r || {}).length || Object.keys(e.n || {}).length; });
+  if (!days.includes(d0)) days.push(d0);
+  days.sort();
+  let head = `<tr><th class="c-num" scope="col">№</th><th class="c-date" scope="col">Дата</th>`;
+  for (const p of cols) head += `<th class="c-por${cur && p.id === cur.id ? ' is-cur' : ''}${!isDone(p) && !(S.memo[p.id] || {}).l ? ' is-todo' : ''}" scope="col"><span class="vh" title="${esc(pTitle(p))}">${esc(pTitle(p))}</span></th>`;
+  head += `</tr>`;
+  let body = '';
+  days.forEach((d, i) => {
+    if (i && i % 30 === 0) body += `<tr class="sheet-break"><td colspan="${cols.length + 2}"><span class="sheet-label">Лист ${i / 30 + 1}</span></td></tr>`;
+    const e = S.log[d] || { r: {} }, r = e.r || {}, n = e.n || {};
+    const kind = p => n[p.id] ? 'n' : (r[p.id] || '');
+    const ks = cols.map(kind);
+    const dt = parseD(d);
+    body += `<tr class="${d === d0 ? 'is-today' : ''}"><td class="c-num">${(i % 30) + 1}</td><td class="c-date"><button class="daybtn" data-act="day" data-d="${d}">${pad(dt.getDate())}.${pad(dt.getMonth() + 1)}<small>${fmt(dt, { weekday: 'short' })}</small></button></td>`;
+    cols.forEach((p, c) => {
+      const k = ks[c]; let inner = '';
+      if (k) {
+        const joinL = c > 0 && ks[c - 1] === k && k !== 'n', joinR = c < ks.length - 1 && ks[c + 1] === k && k !== 'n';
+        const label = k === 'n' ? (posAt(p, n[p.id]) || {}).a || '' : '';
+        inner = `<i class="mk mk-${k}${joinL ? '' : ' a'}${joinR ? '' : ' z'}">${label}</i>`;
+      }
+      const lbl = `${pTitle(p)}, ${pad(dt.getDate())}.${pad(dt.getMonth() + 1)}: ${k === 'n' ? 'новое' : k === 'g' ? 'повторено' : k === 'w' ? 'с ошибками' : 'пусто'}`;
+      body += `<td><button class="cell" data-act="cell" data-d="${d}" data-id="${esc(p.id)}" aria-label="${esc(lbl)}">${inner}</button></td>`;
+    });
+    body += `</tr>`;
+  });
+  return `<header class="between"><h1 class="page-title">Таблица</h1>${S.name ? `<span class="grid-name">${esc(S.name)}</span>` : ''}</header>
+    <div class="legend"><span><i class="sw sw-n"></i>Новое (до аята)</span><span><i class="sw sw-g"></i>Повтор</span><span><i class="sw sw-w"></i>С ошибками</span></div>
+    <div class="grid-wrap" id="grid"><table class="grid"><thead>${head}</thead><tbody>${body}</tbody></table></div>
+    <div class="row" style="justify-content:space-between;flex-wrap:wrap"><p class="hint" style="margin:0;max-width:34ch">Нажмите на клетку, чтобы отметить повтор. Нажмите на дату, чтобы изменить день.</p><button class="btn btn-line" data-act="add-day">Добавить день</button></div>`;
+}
+
+function vProgress() {
+  const L = learnedSet();
+  let nAy = 0, nPg = 0; for (let g = 1; g <= TOTAL; g++) if (L[g]) { nAy++; nPg += PG[g] - PG[g - 1]; }
+  const doneP = learnOrder().filter(isDone);
+  const pct = nAy / TOTAL * 100;
+  const d0 = today();
+  /* juz map */
+  let juz = '';
+  for (let j = 0; j < 30; j++) {
+    let k = 0; for (let g = JUZG[j]; g < JUZG[j + 1]; g++) k += L[g];
+    const f = k / (JUZG[j + 1] - JUZG[j]);
+    juz += `<div class="jz${f > 0.24 ? ' lit' : ''}${f > 0.98 ? ' full' : ''}" title="Джуз ${j + 1}: ${Math.round(f * 100)} %"><i style="height:${(f * 100).toFixed(1)}%"></i><span>${j + 1}</span></div>`;
+  }
+  /* 16-week calendar, columns are weeks starting Monday */
+  const weeks = 16, dt = parseD(d0), dow = (dt.getDay() + 6) % 7;
+  const first = addDays(d0, -(weeks - 1) * 7 - dow);
+  let heat = '', active = 0;
+  for (let i = 0; i < weeks * 7; i++) {
+    const d = addDays(first, i);
+    if (d > d0) { heat += `<i class="hd pad"></i>`; continue; }
+    const e = S.log[d], ok = dayDone(d), part = !ok && e && Object.keys(e.r || {}).length;
+    if (ok) active++;
+    heat += `<i class="hd${ok ? ' on' : part ? ' half' : ''}${e && e.n && Object.keys(e.n).length ? ' hd-n' : ''}${d === d0 ? ' now' : ''}" title="${fmt(parseD(d), { day: 'numeric', month: 'long' })}"></i>`;
+  }
+  /* memory freshness */
+  const rev = revIndex();
+  const fr = doneP.slice().reverse().map(p => {
+    const r = rev[p.id], m = S.memo[p.id];
+    const last = r ? r.d : (m.d !== 'pre' ? m.d : null);
+    const since = last ? daysBetween(last, d0) : null, q = r ? r.q : 'g';
+    const f = since === null ? 0 : clamp(1 - since / (interval(q) * 1.5), 0, 1);
+    const cls = q === 'w' ? 'weak' : f < 0.35 ? 'low' : '';
+    const meta = since === null ? 'ещё не повторялось в дневнике' : since === 0 ? 'повторено сегодня' : `повторено ${daysW(since)} назад`;
+    return `<button class="fr" data-act="extra-one" data-id="${esc(p.id)}"><span class="fr-name">${esc(pTitle(p))}</span><span class="fr-bar"><i class="${cls}" style="width:${Math.max(4, f * 100).toFixed(0)}%"></i></span><span class="fr-meta">${meta}${q === 'w' ? ' · были ошибки' : ''}${since !== null && since >= interval(q) ? ' · пора повторить' : ''}</span></button>`;
+  }).join('');
+  const best = bestStreak(), st = streakAt(d0);
+  const pgShown = nPg < 10 ? Math.round(nPg * 10) / 10 : Math.round(nPg);
+  const ws = weakSpots().slice(0, 8);
+  const wsHTML = ws.map(x => {
+    const W = Q.ayat[x.s] ? words(x.s) : null;
+    let ar = '';
+    if (W) { const set = new Set(x.w); const parts = []; for (let k = W.start[x.a - 1]; k < W.start[x.a]; k++) parts.push(set.has(W.i[k]) ? `<mark>${esc(W.d[k])}</mark>` : esc(W.d[k])); ar = `<span class="wk-ar" lang="ar">${parts.join(' ')}</span>`; }
+    return `<button class="wk" data-act="weak-open" data-s="${x.s}" data-a="${x.a}"><span class="wk-ref">${esc(NAMES[x.s])}, аят ${x.a}</span><span class="wk-n">${x.n} ${plural(x.n, 'ошибка', 'ошибки', 'ошибок')}</span>${ar}</button>`;
+  }).join('');
+  if (ws.length && ws.some(x => !Q.ayat[x.s])) quranInit().then(() => { if (Q.full && ui.tab === 'progress') render(); });
+  return `<h1 class="page-title">Прогресс</h1>
+  <section class="hero">
+    <div class="hero-num"><b>${String(pgShown).replace('.', ',')}</b><span>${Number.isInteger(pgShown) ? plural(pgShown, 'страница', 'страницы', 'страниц') : 'страницы'} из 604</span></div>
+    <p class="hero-sub"><strong>${ayahs(nAy)}</strong> · ${pct < 1 ? pct.toFixed(1).replace('.', ',') : Math.round(pct)} % Корана · ${doneP.length} ${plural(doneP.length, 'участок', 'участка', 'участков')} выучено</p>
+  </section>
+  <section><h2 class="h2">Джузы</h2><div class="juz">${juz}</div></section>
+  <section><h2 class="h2">Дни повторения</h2>
+    <div class="stat-line"><div><b>${st}</b><span>серия сейчас</span></div><div><b>${best}</b><span>лучшая серия</span></div><div><b>${active}</b><span>за 16 недель</span></div></div>
+    <div class="heat" style="grid-template-columns:repeat(${weeks},minmax(0,1fr))">${heat}</div>
+    <p class="hint">Голубой — повторение сделано, контур — начато, жёлтая черта — было новое.</p>
+  </section>
+  ${ws.length ? `<section><h2 class="h2">Слабые места</h2><p class="hint" style="margin-top:4px">Слова, отмеченные как ошибки. Нажмите, чтобы открыть аят.</p><div class="weak-list">${wsHTML}</div></section>` : ''}
+  ${doneP.length ? `<section><div class="between"><h2 class="h2">Свежесть памяти</h2></div><p class="hint" style="margin-top:4px">Нажмите на участок, чтобы добавить его в сегодняшнее повторение.</p><div class="fresh">${fr}</div></section>` : ''}`;
+}
+
+function vMore() {
+  const remind = `<div class="set-row"><div><div class="lbl">Напоминания присылает бот</div><div class="sub">Каждый вечер, если повторение ещё не отмечено. В чате с ботом: /time — время, /tz — часовой пояс, /off — выключить</div></div></div>`;
+  const nDone = S.portions.filter(isDone).length;
+  return `<h1 class="page-title">Ещё</h1>
+  <section class="set">
+    <div class="set-row"><div style="flex:1"><label class="lbl" for="name">Имя на таблице</label><div class="sub">Как подпись сверху бумажного листа</div></div><input id="name" style="max-width:180px" value="${esc(S.name)}" placeholder="Необязательно" data-act="name" autocomplete="off"></div>
+  </section>
+  <section class="set"><h2 class="h2">Повторение</h2>
+    <div class="set-row"><div><div class="lbl">Ближнее</div><div class="sub">Сколько последних участков повторять каждый день</div></div><div class="num"><button data-act="near" data-v="-1" aria-label="Меньше">−</button><output>${S.near}</output><button data-act="near" data-v="1" aria-label="Больше">+</button></div></div>
+    <div class="set-row"><div><div class="lbl">Дальнее</div><div class="sub">За сколько дней проходить по кругу всё остальное</div></div><div class="num"><button data-act="cycle" data-v="-1" aria-label="Меньше">−</button><output>${S.cycle}</output><button data-act="cycle" data-v="1" aria-label="Больше">+</button></div></div>
+    <div class="set-row" style="flex-direction:column;align-items:stretch"><div><div class="lbl">Порядок заучивания</div></div>
+      <div class="seg"><button data-act="dir" data-v="end" aria-pressed="${S.dir === 'end'}">С конца, от ан-Нас</button><button data-act="dir" data-v="start" aria-pressed="${S.dir === 'start'}">С начала, от Фатихи</button></div></div>
+    <div class="set-row"><div><div class="lbl">Участки и выученное</div><div class="sub">${nDone} из ${S.portions.length} выучено · объединить или разделить</div></div><button class="btn btn-line" data-act="portions">Изменить</button></div>
+  </section>
+  <section class="set"><h2 class="h2">Напоминания</h2>${remind}</section>
+  <section class="set"><h2 class="h2">Коран</h2>
+    <div class="set-row"><div><div class="lbl">Слабые места</div><div class="sub">${Object.keys(S.err || {}).length} ${plural(Object.keys(S.err || {}).length, 'слово отмечено', 'слова отмечено', 'слов отмечено')} в тексте</div></div><button class="btn btn-line" data-act="err-clear-ask" ${Object.keys(S.err || {}).length ? '' : 'disabled'}>Очистить</button></div>
+  </section>
+  <section class="set"><h2 class="h2">Данные</h2>
+    <div class="set-row"><div><div class="lbl">Резервная копия</div><div class="sub">${TG && hasCloud() ? 'Дневник хранится в облаке Telegram. ' : 'Дневник хранится в этом браузере. '}Копия пригодится при смене телефона</div></div><button class="btn btn-line" data-act="backup">Открыть</button></div>
+    <div class="set-row"><div><div class="lbl">Пример дневника</div><div class="sub">Заполненный месяц, чтобы посмотреть, как всё работает</div></div><button class="btn btn-line" data-act="ask-demo">Показать</button></div>
+    <div class="set-row"><div><div class="lbl danger">Начать заново</div><div class="sub">Удалит все отметки и выученное</div></div><button class="btn btn-line" data-act="ask-reset">Сбросить</button></div>
+  </section>
+  <p class="foot">Текст Корана — проект Танзиль, мусхаф Усмани (<a href="https://tanzil.net" target="_blank" rel="noopener">tanzil.net</a>), через <a href="https://alquran.cloud" target="_blank" rel="noopener">alquran.cloud</a>. Чтение Мишари Рашида аль-Афаси.</p>`;
+}
+
+/* ================= render ================= */
+function render() {
+  const v = $('#view');
+  if (!S) { v.innerHTML = ''; return; }
+  const g = $('#grid');
+  if (g) ui.gridPos = { l: g.scrollLeft, t: g.scrollTop };
+  v.innerHTML = { today: vToday, quran: vQuran, table: vTable, progress: vProgress, more: vMore }[ui.tab]();
+  if (ui.tab === 'quran') afterQuranRender();
+  document.querySelectorAll('.tab').forEach(t => t.setAttribute('aria-current', t.dataset.tab === ui.tab ? 'page' : 'false'));
+  const g2 = $('#grid');
+  if (g2) {
+    if (ui.gridPos) { g2.scrollLeft = ui.gridPos.l; g2.scrollTop = ui.gridPos.t; }
+    else {
+      g2.scrollTop = g2.scrollHeight;
+      const c = g2.querySelector('.is-cur');
+      if (c) g2.scrollLeft = Math.max(0, c.offsetLeft - 120);
+    }
+  }
+}
+function go(tab) { if (ui.tab !== tab) { ui.tab = tab; ui.gridPos = null; render(); window.scrollTo(0, 0); } }
+
+let toastT = null;
+function toast(msg) { const t = $('#toast'); t.textContent = msg; t.classList.add('show'); clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove('show'), 2600); }
+
+/* ================= bottom sheet ================= */
+function openSheet(title, body, foot, kind) {
+  ui.sheet = kind || 'sheet';
+  $('#sheet-title').textContent = title;
+  $('#sheet-body').innerHTML = body;
+  const f = $('#sheet-foot'); f.innerHTML = foot || ''; f.hidden = !foot;
+  const s = $('#sheet'), sc = $('#scrim');
+  s.hidden = false; sc.hidden = false;
+  requestAnimationFrame(() => { s.classList.add('open'); sc.classList.add('open'); });
+  $('#sheet-body').scrollTop = 0;
+  $('#sheet .x').hidden = (ui.sheet === 'onb' && !S);
+  try { if (TG && !$('#sheet .x').hidden) TG.BackButton.show(); } catch (e) { /* noop */ }
+}
+function updateSheet(body, foot) { $('#sheet-body').innerHTML = body; const f = $('#sheet-foot'); if (foot !== undefined) { f.innerHTML = foot || ''; f.hidden = !foot; } }
+function closeSheet(keepAudio) {
+  if (!ui.sheet) return;
+  if (ui.sheet === 'onb' && !S) return;
+  ui.sheet = null; if (keepAudio !== true) stopAudio();
+  const s = $('#sheet'), sc = $('#scrim');
+  s.classList.remove('open'); sc.classList.remove('open');
+  setTimeout(() => { if (!ui.sheet) { s.hidden = true; sc.hidden = true; } }, 260);
+  try { if (TG) TG.BackButton.hide(); } catch (e) { /* noop */ }
+  render();
+}
+
+/* ---- onboarding ---- */
+function onbStep() {
+  const o = ui.onb, dots = n => `<div class="step-dots">${[0, 1, 2].map(i => `<i class="${i <= n ? 'on' : ''}"></i>`).join('')}</div>`;
+  if (o.step === 0) {
+    $('#sheet-title').textContent = '';
+    updateSheet(`<div class="onb-band">${ICON_BOOK_BIG}<h2 class="onb-title">Дневник хифза</h2></div>
+      <p class="lead">Та же таблица, что на бумаге: жёлтым — новое, голубым — повторение. Только план повторения на каждый день собирается сам, а серия дней не даёт пропустить.</p>`,
+      `<button class="btn btn-line" data-act="onb-demo">Посмотреть пример</button><button class="btn btn-ink" data-act="onb-next">Начать</button>`);
+  } else if (o.step === 1) {
+    $('#sheet-title').textContent = 'Как вы заучиваете?';
+    updateSheet(`${dots(0)}
+      <button class="choice" data-act="onb-dir" data-v="end" aria-pressed="${o.st.dir === 'end'}"><b>С конца</b><span>От ан-Нас к началу: джуз Амма, потом Табарак и дальше</span></button>
+      <button class="choice" data-act="onb-dir" data-v="start" aria-pressed="${o.st.dir === 'start'}"><b>С начала</b><span>От аль-Фатихи и аль-Бакары по порядку мусхафа</span></button>`,
+      `<button class="btn btn-line" data-act="onb-back">Назад</button><button class="btn btn-ink" data-act="onb-next">Дальше</button>`);
+  } else if (o.step === 2) {
+    $('#sheet-title').textContent = 'Что уже выучено?';
+    const prev = S; S = o.st;
+    const order = learnOrder(); const lastDone = order.reduce((k, p, i) => isDone(p) ? i : k, -1);
+    const shown = o.all ? order.length : Math.max(40, lastDone + 12);
+    let list = '', juzPrev = 0;
+    order.slice(0, shown).forEach((p, i) => {
+      const j = JUZ_OF[G(p.parts[0].s, p.parts[0].f)];
+      if (j !== juzPrev) { list += `<div class="pk-sep">Джуз ${j}</div>`; juzPrev = j; }
+      list += `<button class="pk${isDone(p) ? ' on' : ''}" data-act="onb-upto" data-i="${i}"><span class="box">${isDone(p) ? '✓' : ''}</span><span>${esc(pTitle(p))}</span><span class="meta">${ayahs(pAyahs(p))}</span></button>`;
+    });
+    const n = order.filter(isDone).length;
+    S = prev;
+    updateSheet(`${dots(1)}<p class="lead" style="font-size:14.5px">Нажмите на последний выученный участок — всё до него отметится. Отдельные участки потом можно поправить в «Ещё».</p>
+      <div class="pick">${list}</div>${shown < order.length ? `<button class="btn btn-line" data-act="onb-more">Показать ещё</button>` : ''}`,
+      `<button class="btn btn-line" data-act="onb-back">Назад</button><button class="btn btn-ink" data-act="onb-next">${n ? `Дальше · ${n}` : 'Пока ничего'}</button>`);
+  } else if (o.step === 3) {
+    $('#sheet-title').textContent = 'Сколько повторять?';
+    const opt = (c, t, s) => `<button class="choice" data-act="onb-cycle" data-v="${c}" aria-pressed="${o.st.cycle === c}"><b>${t}</b><span>${s}</span></button>`;
+    updateSheet(`${dots(2)}<p class="lead" style="font-size:14.5px">Последние ${o.st.near} участка повторяются каждый день. Остальное — по кругу:</p>
+      ${opt(14, 'Спокойно', 'Весь выученный объём за 14 дней — немного каждый день')}
+      ${opt(7, 'Обычно', 'Весь объём за неделю')}
+      ${opt(3, 'Интенсивно', 'Весь объём за 3 дня — для тех, у кого выучено немного')}
+      <p class="hint">Участки, где были ошибки, возвращаются в два раза чаще. Всё это можно поменять потом.</p>`,
+      `<button class="btn btn-line" data-act="onb-back">Назад</button><button class="btn btn-ink" data-act="onb-finish">Готово</button>`);
+  }
+}
+function openOnboarding() {
+  const st = fresh();
+  ui.onb = { step: 0, st, shown: 0 };
+  openSheet('', '', '', 'onb');
+  onbStep();
+}
+
+/* ---- portions editor ---- */
+function portionsSheet() {
+  const order = learnOrder(), cur = currentPortion();
+  let list = '', juzPrev = 0;
+  order.forEach(p => {
+    const j = JUZ_OF[G(p.parts[0].s, p.parts[0].f)];
+    if (j !== juzPrev) { list += `<div class="pk-sep">Джуз ${j}</div>`; juzPrev = j; }
+    const m = S.memo[p.id] || {}, done = !!m.d, part = !done && m.l > 0;
+    list += `<div class="pk${done ? ' on' : part ? ' part' : ''}" style="grid-template-columns:26px 1fr auto 36px">
+      <button class="box" data-act="p-toggle" data-id="${esc(p.id)}" aria-label="${done ? 'Снять отметку' : 'Отметить выученным'}: ${esc(pTitle(p))}">${done ? '✓' : ''}</button>
+      <span>${esc(pTitle(p))}${cur && p.id === cur.id ? ' <span class="small muted">· сейчас</span>' : ''}</span><span class="meta">${part ? posLabel(p, m.l) : ayahs(pAyahs(p))}</span>
+      <button class="x" data-act="p-menu" data-id="${esc(p.id)}" aria-label="Действия: ${esc(pTitle(p))}"><svg viewBox="0 0 16 16"><circle cx="3" cy="8" r="1" /><circle cx="8" cy="8" r="1"/><circle cx="13" cy="8" r="1"/></svg></button></div>`;
+  });
+  return `<p class="hint" style="margin:0">В порядке заучивания. Квадрат — выучено. Участки можно объединять, как на листе «Курайш · Маун · Каусар», или делить.</p><div class="pick">${list}</div>`;
+}
+function remapIds(map) { /* map: oldId -> [newIds], merge rule for marks: 'w' wins */
+  for (const d in S.log) {
+    const e = S.log[d];
+    for (const key of ['r', 'n']) {
+      if (!e[key]) continue;
+      const out = {};
+      for (const id in e[key]) {
+        const tgt = map[id] || [id];
+        for (const t of tgt) {
+          if (key === 'r') out[t] = (out[t] === 'w' || e[key][id] === 'w') ? 'w' : 'g';
+          else out[t] = Math.max(out[t] || 0, e[key][id]);
+        }
+      }
+      e[key] = out;
+    }
+    if (e.plan) for (const k of ['near', 'far']) e.plan[k] = [...new Set(e.plan[k].flatMap(id => map[id] || [id]))];
+    if (e.x) e.x = [...new Set(e.x.flatMap(id => map[id] || [id]))];
+  }
+}
+function normParts(parts) {
+  const out = [];
+  for (const x of parts) { const l = out[out.length - 1]; if (l && l.s === x.s && l.t + 1 === x.f) l.t = x.t; else out.push({ ...x }); }
+  return out;
+}
+function mergeNext(id) {
+  const i = S.portions.findIndex(p => p.id === id), a = S.portions[i], b = S.portions[i + 1];
+  if (!a || !b) return;
+  const np = mk(normParts([...a.parts, ...b.parts]));
+  const ma = S.memo[a.id] || {}, mb = S.memo[b.id] || {};
+  const la = ma.d ? pAyahs(a) : (ma.l || 0), lb = mb.d ? pAyahs(b) : (mb.l || 0);
+  const m = { l: Math.min(pAyahs(np), la + lb) };
+  if (ma.d && mb.d) m.d = (ma.d === 'pre' ? mb.d : mb.d === 'pre' ? ma.d : (ma.d > mb.d ? ma.d : mb.d));
+  delete S.memo[a.id]; delete S.memo[b.id]; if (m.l || m.d) S.memo[np.id] = m;
+  S.portions.splice(i, 2, np);
+  remapIds({ [a.id]: [np.id], [b.id]: [np.id] });
+}
+function splitPortion(id) {
+  const i = S.portions.findIndex(p => p.id === id), p = S.portions[i];
+  if (!p) return;
+  let kids;
+  if (p.parts.length > 1) kids = p.parts.map(x => mk([x]));
+  else {
+    const x = p.parts[0]; if (x.t - x.f < 1) return;
+    const target = PG[G(x.s, x.f) - 1] + pagesOf(x.s, x.f, x.t) / 2; let t = x.f;
+    while (t < x.t - 1 && PG[G(x.s, t)] < target) t++;
+    kids = [mk([{ s: x.s, f: x.f, t }]), mk([{ s: x.s, f: t + 1, t: x.t }])];
+  }
+  const m = S.memo[p.id] || {}; delete S.memo[p.id];
+  S.portions.splice(i, 1, ...kids); S.portions.sort(byMushaf);
+  if (m.d) kids.forEach(k => { S.memo[k.id] = { l: pAyahs(k), d: m.d }; });
+  else if (m.l) {
+    let rem = m.l;
+    const ordered = S.dir === 'end' ? kids.slice().sort((a, b) => pMax(b) - pMax(a) || a.parts[0].f - b.parts[0].f) : kids;
+    for (const k of ordered) { const n = Math.min(rem, pAyahs(k)); if (n > 0) S.memo[k.id] = n === pAyahs(k) ? { l: n, d: 'pre' } : { l: n }; rem -= n; }
+  }
+  remapIds({ [p.id]: kids.map(k => k.id) });
+}
+
+/* ---- day editor (date tap in the table) ---- */
+function daySheet(d) {
+  const e = S.log[d] || {}, n = e.n || {};
+  const dt = parseD(d);
+  const cand = learnOrder().filter(p => n[p.id] || !isDone(p) || (S.memo[p.id] || {}).l).slice(0, 40);
+  const sel = Object.keys(n)[0] || (currentPortion() || {}).id || '';
+  const sp = pById(sel);
+  const val = sp ? (n[sel] || (S.memo[sel] || {}).l || 0) : 0;
+  return `<p class="muted">${cap(fmt(dt, { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }))}</p>
+    <div><label class="h3" for="d-por">Новое в этот день</label>
+      <select id="d-por" data-act="d-por" style="margin-top:6px"><option value="">Не было</option>${cand.map(p => `<option value="${esc(p.id)}" ${p.id === sel && n[sel] ? 'selected' : ''}>${esc(pTitle(p))}</option>`).join('')}</select></div>
+    <div id="d-pos-wrap" ${n[sel] ? '' : 'hidden'}><label class="h3" for="d-pos">Выучено до</label>
+      <input id="d-pos" type="range" min="1" max="${sp ? pAyahs(sp) : 1}" value="${Math.max(1, val)}" data-act="d-pos" style="margin-top:10px;padding:0;border:0;background:none">
+      <p class="small" id="d-pos-l" style="margin-top:4px">${sp ? posLabel(sp, Math.max(1, val)) : ''}</p></div>
+    <p class="hint">Повторы отмечаются прямо в таблице — нажатием на клетку.</p>
+    <div class="menu"><button data-act="d-del" data-d="${d}" class="danger">Удалить этот день из таблицы</button></div>`;
+}
+
+/* ---- self-test ---- */
+async function surahText(s) {
+  const ok = await surahLoad(s);
+  if (!ok) throw new Error('no text');
+  return { t: Q.ayat[s] };
+}
+function pickAyah() {
+  const L = learnedSet(), rev = revIndex(), d0 = today();
+  const pool = S.portions.filter(p => isDone(p) || (S.memo[p.id] || {}).l > 0);
+  if (!pool.length) return null;
+  const weights = pool.map(p => { const r = rev[p.id]; const since = r ? daysBetween(r.d, d0) : S.cycle; return 1 + (r && r.q === 'w' ? 2 : 0) + Math.min(2, since / interval(r ? r.q : 'g')); });
+  let x = Math.random() * weights.reduce((a, b) => a + b, 0), p = pool[0];
+  for (let i = 0; i < pool.length; i++) { x -= weights[i]; if (x <= 0) { p = pool[i]; break; } }
+  const cands = [];
+  for (const part of p.parts) for (let a = part.f; a <= part.t; a++) if (L[G(part.s, a)]) cands.push({ s: part.s, a });
+  const c = cands[Math.floor(Math.random() * cands.length)];
+  return Object.assign({ pid: p.id }, c);
+}
+let audio = null;
+function stopAudio() { if (audio) { audio.pause(); audio = null; } }
+async function testSheet(first) {
+  const mode = ui.testMode;
+  const seg = `<div class="seg"><button data-act="t-mode" data-v="cont" aria-pressed="${mode === 'cont'}">Продолжи аят</button><button data-act="t-mode" data-v="surah" aria-pressed="${mode === 'surah'}">Какая сура?</button></div>`;
+  if (first) openSheet('Проверь себя', seg + '<p class="muted">Загружаю аят…</p>', '', 'test');
+  else updateSheet(seg + '<p class="muted">Загружаю аят…</p>', '');
+  stopAudio();
+  const q = pickAyah();
+  if (!q) { updateSheet(seg + '<p class="empty">Сначала отметьте выученное.</p>', ''); return; }
+  let st;
+  try { st = await surahText(q.s); } catch (e) {
+    updateSheet(seg + `<div class="err">Не удалось загрузить текст аята. Проверьте подключение к интернету и попробуйте ещё раз.</div>`, `<button class="btn btn-ink" data-act="t-next">Попробовать ещё раз</button>`);
+    return;
+  }
+  if (ui.sheet !== 'test') return;
+  const text = st.t[q.a - 1] || '', next = st.t[q.a] || '';
+  ui.q = Object.assign({}, q, { text, next, revealed: false });
+  if (mode === 'cont') {
+    const w = text.split(' '), k = clamp(Math.floor(w.length / 3), 1, 3);
+    updateSheet(`${seg}<p class="ref">${esc(NAMES[q.s])}, аят ${q.a}</p>
+      <p class="ar" lang="ar">${esc(w.slice(0, k).join(' '))} <span class="hid">${esc(w.slice(k).join(' ')) || '…'}</span></p>
+      <p class="hint" style="margin:0">Прочитайте аят до конца по памяти, потом откройте.</p>`,
+      `<button class="btn btn-ink" data-act="t-reveal">Показать</button>`);
+  } else {
+    const L = learnedSet();
+    const known = [...new Set(S.portions.filter(p => isDone(p) || (S.memo[p.id] || {}).l).flatMap(p => p.parts.map(x => x.s)))].filter(s => s !== q.s && L[G(s, 1)]);
+    const opts = [q.s];
+    while (opts.length < 4 && known.length) opts.push(known.splice(Math.floor(Math.random() * known.length), 1)[0]);
+    opts.sort(() => Math.random() - 0.5);
+    ui.q.opts = opts;
+    updateSheet(`${seg}<p class="ar" lang="ar">${esc(text)}</p>
+      ${opts.length > 1 ? `<div class="opts">${opts.map(s => `<button class="opt" data-act="t-pick" data-v="${s}">${esc(NAMES[s])}</button>`).join('')}</div>` : '<p class="hint">Для выбора нужно хотя бы две выученные суры.</p><button class="btn btn-line" data-act="t-pick" data-v="' + q.s + '">Показать ответ</button>'}`, '');
+  }
+}
+function playBtn(q) { return `<button class="play" data-act="t-play" data-s="${q.s}" data-a="${q.a}"><svg viewBox="0 0 30 30" aria-hidden="true"><circle cx="15" cy="15" r="14" fill="none" stroke="currentColor" stroke-width="1.4"/><path d="M12 9.5v11l9-5.5z"/></svg>Послушать аят</button>`; }
+
+/* ================= Quran text ================= */
+const Q = { mode: null, full: false, ayat: {}, page: {}, names: [], basm: '', W: {}, loading: {}, _init: null };
+const LETTER = /[ء-غف-يٱ-ۓۺ-ۿ]/;
+const MARKS = /[ؐ-ًؚ-ٰٟۖ-ۭـ﻿​-‏]/g;
+function nkey(w) {
+  return String(w).replace(MARKS, '')
+    .replace(/[آأإٱٲٳٵ]/g, 'ا')
+    .replace(/[ىی]/g, 'ي').replace(/ة/g, 'ه').replace(/ؤ/g, 'و').replace(/ئ/g, 'ي').replace(/ک/g, 'ك')
+    .replace(/[ءا]/g, '')
+    .replace(/[^ب-ي]/g, '');
+}
+const BASM_KEYS = ['بسم', 'لله', 'لرحمن', 'لرحيم'];
+/* alquran.cloud puts the basmala at the start of ayah 1; it is shown as the surah header instead */
+function stripBasmala(s, text) {
+  const t0 = String(text).replace(/﻿/g, '');
+  if (s === 1 || s === 9) return t0;
+  const tok = t0.split(/\s+/);
+  if (tok.length > 4 && BASM_KEYS.every((k, i) => nkey(tok[i]) === k)) {
+    if (!Q.basm) Q.basm = tok.slice(0, 4).join(' ');
+    return tok.slice(4).join(' ');
+  }
+  return t0;
+}
+const AR_DIG = '٠١٢٣٤٥٦٧٨٩';
+const arNum = n => String(n).replace(/\d/g, d => AR_DIG[d]);
+
+function quranInit() {
+  if (Q._init) return Q._init;
+  Q._init = (async () => {
+    try {
+      const r = await fetch('quran.json');
+      if (!r.ok) throw new Error('no bundle');
+      const j = await r.json();
+      if (!j || !Array.isArray(j.t) || j.t.length !== 114) throw new Error('bad bundle');
+      if (j.b) Q.basm = j.b;
+      j.t.forEach((arr, i) => { const s = i + 1; Q.ayat[s] = arr.map((t, a) => a === 0 ? stripBasmala(s, t) : t); Q.page[s] = (j.p && j.p[i]) || []; });
+      Q.names = [null].concat(j.n || []);
+      Q.full = true; Q.mode = 'bundle';
+    } catch (e) { Q.mode = 'remote'; }
+    return Q.mode;
+  })();
+  return Q._init;
+}
+async function surahLoad(s) {
+  await quranInit();
+  if (Q.ayat[s]) return true;
+  if (Q.mode !== 'remote') return false;
+  if (!Q.loading[s]) Q.loading[s] = (async () => {
+    let d = null;
+    try { const c = localStorage.getItem('hifz.qs.' + s); if (c) d = JSON.parse(c); } catch (e) { /* noop */ }
+    if (!d) {
+      const r = await fetch(`https://api.alquran.cloud/v1/surah/${s}/quran-uthmani`);
+      if (!r.ok) throw new Error('http ' + r.status);
+      const j = await r.json();
+      d = { n: j.data.name, t: j.data.ayahs.map(x => x.text), p: j.data.ayahs.map(x => x.page || 0) };
+      try { localStorage.setItem('hifz.qs.' + s, JSON.stringify(d)); } catch (e) { /* noop */ }
+    }
+    Q.ayat[s] = d.t.map((t, a) => a === 0 ? stripBasmala(s, t) : t); Q.page[s] = d.p; Q.names[s] = d.n;
+    return true;
+  })();
+  try { return await Q.loading[s]; } catch (e) { delete Q.loading[s]; throw e; }
+}
+/* words of a surah; pause marks (ۖ ۗ ۚ), ۞ and ۩ ride along with the neighbouring word */
+function words(s) {
+  if (Q.W[s]) return Q.W[s];
+  const A = Q.ayat[s]; if (!A) return null;
+  const d = [], a = [], i = [], start = [0];
+  A.forEach((txt, ai) => {
+    let wi = 0, lead = '';
+    String(txt).split(/\s+/).filter(Boolean).forEach(t => {
+      if (!LETTER.test(t)) { if (d.length > start[ai]) d[d.length - 1] += ' ' + t; else lead += t + ' '; return; }
+      d.push(lead + t); lead = ''; a.push(ai + 1); i.push(wi++);
+    });
+    start.push(d.length);
+  });
+  return (Q.W[s] = { d, a, i, start, n: d.length });
+}
+const REF = (s, k) => s * 10000 + k;
+const rS = r => (r / 10000) | 0, rK = r => r % 10000;
+function refInfo(r) { const s = rS(r), W = words(s), k = rK(r); return W && k < W.n ? { s, k, a: W.a[k], i: W.i[k], d: W.d[k] } : null; }
+const ayahStartRef = (s, a) => { const W = words(s); return W ? REF(s, W.start[a - 1]) : -1; };
+const errKey = r => { const x = refInfo(r); return x ? `${x.s}:${x.a}:${x.i}` : null; };
+function errsToday(p) {
+  const d = today();
+  for (const k in (S.err || {})) { const [s, a] = k.split(':').map(Number); if (S.err[k].d === d && p.parts.some(x => x.s === s && a >= x.f && a <= x.t)) return true; }
+  return false;
+}
+
+/* ================= reader view ================= */
+function wordClass(ref) {
+  let c = '';
+  const k = errKey(ref); if (k && S.err && S.err[k]) c += ' saved';
+  if (ui.peek && ui.peek.has(ref)) c += ' peek';
+  return c;
+}
+function surahHTML(s) {
+  const W = words(s), P = Q.page[s] || [];
+  let h = '';
+  if (s !== 1 && s !== 9 && Q.basm) h += `<div class="basmala" lang="ar">${esc(Q.basm)}</div>`;
+  h += '<div class="q-text" lang="ar">';
+  let pg = 0;
+  for (let a = 1; a <= AY[s]; a++) {
+    const p = P[a - 1] || 0;
+    if (p && p !== pg) { h += `</div><div class="pmark">стр. ${p}</div><div class="q-text" lang="ar">`; pg = p; }
+    for (let k = W.start[a - 1]; k < W.start[a]; k++) { const r = REF(s, k); h += `<span class="w${wordClass(r)}" id="w${r}" data-act="qw" data-r="${r}">${esc(W.d[k])}</span> `; }
+    h += `<button class="ano" data-act="q-ayah" data-s="${s}" data-a="${a}" aria-label="Аят ${a}">${arNum(a)}</button> `;
+  }
+  return h.replace('<div class="q-text" lang="ar"></div>', '') + '</div>';
+}
+function vQuran() {
+  const q = ui.q;
+  if (!q.s) { const cp = currentPortion(); q.s = (S && S.qs) || (cp ? cp.parts[0].s : 1); }
+  if (!q.mode) q.mode = (S && S.qmode) || 'text';
+  const s = q.s;
+  const loaded = !!Q.ayat[s];
+  if (!loaded && !q.loadErr) surahLoad(s).then(ok => { if (!ok) q.loadErr = 'none'; if (ui.tab === 'quran' && ui.q.s === s) render(); }).catch(() => { q.loadErr = 'net'; if (ui.tab === 'quran') render(); });
+  const P = Q.page[s] || [];
+  const pages = P.length && P[0] ? (P[0] === P[P.length - 1] ? `стр. ${P[0]}` : `стр. ${P[0]}–${P[P.length - 1]}`) : '';
+  const meta = [`сура ${s}`, ayahs(AY[s]), pages, `джуз ${JUZ_OF[G(s, 1)]}`].filter(Boolean).join(' · ');
+  const fp = q.focus && pById(q.focus);
+  let h = `<header class="q-head">
+    <div class="q-nav">
+      <button class="q-arrow" data-act="q-go" data-v="${s > 1 ? s - 1 : 114}" aria-label="Предыдущая сура"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></button>
+      <button class="q-title" data-act="q-pick" aria-label="Выбрать суру">${Q.names[s] ? `<span class="q-ar" lang="ar">${esc(Q.names[s])}</span>` : ''}<span class="q-ru">${esc(NAMES[s])}</span><span class="q-meta">${meta}</span></button>
+      <button class="q-arrow" data-act="q-go" data-v="${s < 114 ? s + 1 : 1}" aria-label="Следующая сура"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button>
+    </div>
+    <div class="q-tools">
+      <div class="seg"><button data-act="q-mode" data-v="text" aria-pressed="${q.mode !== 'hide'}">Текст</button><button data-act="q-mode" data-v="hide" aria-pressed="${q.mode === 'hide'}">По памяти</button></div>
+      <div class="q-size"><button data-act="q-size" data-v="-2" aria-label="Мельче">A−</button><button data-act="q-size" data-v="2" aria-label="Крупнее">A+</button></div>
+    </div>
+    ${fp ? `<div class="q-focus"><span>Участок: <b>${esc(pTitle(fp))}</b></span><button class="btn btn-glass" data-act="q-focus-done" style="min-height:36px">Отметить повторение</button></div>` : ''}
+  </header>
+  <p class="hint" style="margin:0">${q.mode === 'hide'
+    ? 'Читайте по памяти. Нажмите на скрытое слово, чтобы проверить себя; на открытое — чтобы отметить ошибку.'
+    : 'Нажмите на слово, чтобы отметить ошибку, — оно станет слабым местом. Номер аята — послушать.'}</p>`;
+  if (loaded) {
+    h += `<section class="q-body${q.mode === 'hide' ? ' hidetext' : ''}" style="--qsize:${S.qsize || 30}px" aria-label="${esc(NAMES[s])}">${surahHTML(s)}</section>
+      <p class="q-src">Текст: Танзиль, мусхаф Усмани (<a href="https://tanzil.net" target="_blank" rel="noopener">tanzil.net</a>).</p>`;
+  } else if (q.loadErr) {
+    h += `<section class="q-body"><div class="q-load"><p>${FRAMED && !TG ? 'В предпросмотре загрузка текста с alquran.cloud закрыта. В Telegram текст загрузится сам — или положите файл quran.json рядом с index.html.' : q.loadErr === 'net' ? 'Не удалось загрузить текст суры. Проверьте интернет и попробуйте ещё раз.' : 'Текст Корана не подключён. Положите файл quran.json рядом с index.html.'}</p><button class="btn btn-line" data-act="q-retry">Попробовать ещё раз</button></div></section>`;
+  } else h += `<section class="q-body"><div class="q-load"><p class="muted">Загружаю текст суры…</p></div></section>`;
+  return h;
+}
+function surahPicker(filter) {
+  const f = (filter || '').trim().toLowerCase();
+  let list = '';
+  for (let s = 1; s <= 114; s++) {
+    if (f && !(String(s) === f || NAMES[s].toLowerCase().includes(f))) continue;
+    list += `<button class="sr-row" data-act="q-go" data-v="${s}"><span class="sr-n">${s}</span><span><span class="sr-ru">${esc(NAMES[s])}</span><span class="sr-sub">${ayahs(AY[s])} · джуз ${JUZ_OF[G(s, 1)]}</span></span>${Q.names[s] ? `<span class="sr-ar" lang="ar">${esc(String(Q.names[s]).replace(/^سُورَةُ\s*/, ''))}</span>` : ''}</button>`;
+  }
+  return list || '<p class="empty">Нет такой суры.</p>';
+}
+function ayahSheet(s, a) {
+  const W = words(s); let saved = 0;
+  if (W) for (let k = W.start[a - 1]; k < W.start[a]; k++) if (S.err && S.err[`${s}:${a}:${W.i[k]}`]) saved++;
+  openSheet(`${NAMES[s]}, аят ${a}`, `<div class="menu">
+    <button data-act="q-listen" data-s="${s}" data-a="${a}">Послушать аят</button>
+    ${ui.q.mode === 'hide' ? `<button data-act="q-reveal" data-s="${s}" data-a="${a}">Показать текст аята</button>` : ''}
+    ${saved ? `<button data-act="q-unmark" data-s="${s}" data-a="${a}">Снять отметки ошибок в аяте (${saved})</button>` : ''}
+  </div>`, '', 'ayah');
+}
+function openReader(s, a, focus) {
+  ui.q.s = s; ui.q.focus = focus || null; ui.q.loadErr = null; ui.q.scrollA = a || null;
+  S.qs = s; save();
+  ui.tab = 'quran'; render(); window.scrollTo(0, 0);
+}
+function afterQuranRender() {
+  const a = ui.q.scrollA;
+  if (a && Q.ayat[ui.q.s]) {
+    ui.q.scrollA = null;
+    const el = document.getElementById('w' + ayahStartRef(ui.q.s, a));
+    if (el) requestAnimationFrame(() => window.scrollTo({ top: window.scrollY + el.getBoundingClientRect().top - 160 }));
+  }
+}
+function weakSpots() {
+  const by = {};
+  for (const k in (S.err || {})) { const [s, a, i] = k.split(':').map(Number); const id = s + ':' + a; const v = S.err[k]; (by[id] = by[id] || { s, a, n: 0, d: '', w: [] }); by[id].n += v.n || 1; by[id].w.push(i); if ((v.d || '') > by[id].d) by[id].d = v.d || ''; }
+  return Object.values(by).sort((x, y) => y.n - x.n || (y.d > x.d ? 1 : -1));
+}
+
+/* ================= actions ================= */
+const ACT = {
+  tab: el => go(el.dataset.tab),
+  'close-sheet': () => closeSheet(),
+  'start-own': () => openConfirm('Начать свой дневник?', 'Пример удалится, и вы отметите своё выученное.', 'Начать', 'do-reset'),
+  'new-step': el => {
+    const cur = currentPortion(); if (!cur) return;
+    const fin = setLearned(cur, ((S.memo[cur.id] || {}).l || 0) + Number(el.dataset.v), today());
+    save(); haptic(); if (fin) { toast(`${pTitle(cur)} — выучено целиком`); haptic('ok'); }
+    render();
+  },
+  'new-all': () => {
+    const cur = currentPortion(); if (!cur) return;
+    setLearned(cur, pAyahs(cur), today()); save(); haptic('ok'); toast(`${pTitle(cur)} — выучено целиком`); render();
+  },
+  mark: el => {
+    const d = today(), was = dayDone(d);
+    cycleMark(d, el.dataset.id); save(); haptic();
+    if (!was && dayDone(d)) { haptic('ok'); toast('Повторение на сегодня сделано'); }
+    render();
+  },
+  rebuild: () => {
+    const e = S.log[today()]; if (!e) return;
+    const keep = Object.keys(e.r || {});
+    e.plan = buildPlan(today());
+    e.x = [...new Set([...(e.x || []), ...keep.filter(id => !e.plan.near.includes(id) && !e.plan.far.includes(id))])];
+    save(); render(); toast('План на сегодня собран заново');
+  },
+  'add-extra': () => {
+    const e = S.log[today()] || {}; const ids = new Set(planIds(e));
+    const list = learnOrder().filter(p => isDone(p) && !ids.has(p.id));
+    openSheet('Добавить к повторению', list.length ? `<div class="pick">${list.map(p => `<button class="pk" data-act="extra-one" data-id="${esc(p.id)}"><span class="box"></span><span>${esc(pTitle(p))}</span><span class="meta">${fmtPages(pPages(p))}</span></button>`).join('')}</div>` : '<p class="empty">Все выученные участки уже в плане.</p>', '', 'extra');
+  },
+  'extra-one': el => {
+    const d = today(); const e = ensurePlan(d) || dayEntry(d, true);
+    if (!e.plan) e.plan = { near: [], far: [] };
+    const id = el.dataset.id;
+    if (!planIds(e).includes(id)) { e.x = (e.x || []).concat(id); save(); toast(`${pTitle(pById(id))} — в повторении на сегодня`); }
+    else toast('Этот участок уже в плане на сегодня');
+    if (ui.sheet === 'extra') closeSheet(); else render();
+  },
+  'open-test': () => testSheet(true),
+  't-mode': el => { ui.testMode = el.dataset.v; testSheet(false); },
+  't-next': () => testSheet(false),
+  't-reveal': () => {
+    const q = ui.q; if (!q) return;
+    const seg = $('#sheet-body .seg').outerHTML;
+    updateSheet(`${seg}<p class="ref">${esc(NAMES[q.s])}, аят ${q.a}</p><p class="ar" lang="ar">${esc(q.text)}</p>${q.next ? `<p class="ar ar-next" lang="ar">${esc(q.next)}</p>` : ''}${playBtn(q)}`,
+      `<button class="btn btn-line" data-act="t-weak">Были ошибки</button><button class="btn btn-ink" data-act="t-next">Помню</button>`);
+  },
+  't-weak': () => {
+    const q = ui.q; if (!q) return;
+    const d = today(); const e = ensurePlan(d) || dayEntry(d, true); if (!e.plan) e.plan = { near: [], far: [] };
+    if (!planIds(e).includes(q.pid)) { e.x = (e.x || []).concat(q.pid); save(); toast(`${pTitle(pById(q.pid))} — добавлено в повторение на сегодня`); }
+    else toast('Этот участок и так в сегодняшнем повторении');
+    testSheet(false);
+  },
+  't-pick': el => {
+    const q = ui.q; if (!q) return;
+    const v = Number(el.dataset.v);
+    document.querySelectorAll('.opt').forEach(b => { const s = Number(b.dataset.v); if (s === q.s) b.classList.add('right'); else if (s === v) b.classList.add('wrong'); b.disabled = true; });
+    haptic(v === q.s ? 'ok' : '');
+    const body = $('#sheet-body');
+    if (!body.querySelector('.play')) body.insertAdjacentHTML('beforeend', `<p class="ref">${esc(NAMES[q.s])}, аят ${q.a}</p>${playBtn(q)}`);
+    updateFoot(`<button class="btn btn-ink" data-act="t-next">Дальше</button>`);
+  },
+  't-play': el => {
+    const g = G(Number(el.dataset.s), Number(el.dataset.a));
+    if (audio) { stopAudio(); return; }
+    audio = new Audio(`https://cdn.islamic.network/quran/audio/128/ar.alafasy/${g}.mp3`);
+    audio.onended = () => { audio = null; };
+    audio.play().catch(() => { audio = null; toast('Не удалось включить аудио'); });
+  },
+  cell: el => {
+    const d = el.dataset.d, id = el.dataset.id;
+    const e = S.log[d];
+    if (e && e.n && e.n[id]) { openSheet('День', daySheet(d), '', 'day'); ui.dayD = d; return; }
+    const was = dayDone(today());
+    cycleMark(d, id); save(); haptic();
+    if (d === today() && !was && dayDone(d)) toast('Повторение на сегодня сделано');
+    render();
+  },
+  day: el => { ui.dayD = el.dataset.d; openSheet('День', daySheet(el.dataset.d), '', 'day'); },
+  'd-del': el => openConfirm('Удалить день?', 'Все отметки этого дня пропадут из таблицы.', 'Удалить', 'do-del-day', el.dataset.d),
+  'add-day': () => {
+    openSheet('Добавить день', `<p class="muted">Для переноса бумажной таблицы: выберите дату, затем нажимайте на клетки.</p><label class="h3" for="nd">Дата</label><input id="nd" type="date" max="${today()}" value="${addDays(today(), -1)}">`,
+      `<button class="btn btn-ink" data-act="add-day-ok">Добавить</button>`, 'addday');
+  },
+  'add-day-ok': () => {
+    const v = $('#nd').value; if (!v) return;
+    dayEntry(v, true).m = 1;
+    save(); ui.gridPos = null; closeSheet(); toast('День добавлен — отметьте клетки');
+  },
+  near: el => { S.near = clamp(S.near + Number(el.dataset.v), 0, 20); afterPlanSetting(); },
+  cycle: el => { S.cycle = clamp(S.cycle + Number(el.dataset.v), 1, 60); afterPlanSetting(); },
+  dir: el => { S.dir = el.dataset.v; afterPlanSetting(); },
+  portions: () => openSheet('Участки', portionsSheet(), '', 'portions'),
+  'p-toggle': el => {
+    const p = pById(el.dataset.id); if (!p) return;
+    const m = S.memo[p.id];
+    if (m && m.d) { delete m.d; m.l = 0; delete S.memo[p.id]; } else S.memo[p.id] = { l: pAyahs(p), d: 'pre' };
+    save(); updateSheet(portionsSheet());
+  },
+  'p-menu': el => {
+    const id = el.dataset.id, p = pById(id); if (!p) return;
+    const i = S.portions.findIndex(x => x.id === id), nx = S.portions[i + 1];
+    const canSplit = p.parts.length > 1 || p.parts[0].t > p.parts[0].f;
+    openSheet(pTitle(p), `<div class="menu">
+      ${nx ? `<button data-act="p-merge" data-id="${esc(id)}">Объединить со следующим: ${esc(pTitle(nx))}</button>` : ''}
+      ${canSplit ? `<button data-act="p-split" data-id="${esc(id)}">${p.parts.length > 1 ? 'Разделить на отдельные суры' : 'Разделить пополам'}</button>` : ''}
+      <button data-act="portions">Назад к списку</button></div>`, '', 'pmenu');
+  },
+  'p-merge': el => { mergeNext(el.dataset.id); save(); openSheet('Участки', portionsSheet(), '', 'portions'); toast('Участки объединены'); },
+  'p-split': el => { splitPortion(el.dataset.id); save(); openSheet('Участки', portionsSheet(), '', 'portions'); toast('Участок разделён'); },
+  backup: () => {
+    openSheet('Резервная копия', `<p class="muted">Скопируйте текст и сохраните, например, в «Избранное» в Telegram. Чтобы восстановить, вставьте его сюда и нажмите «Восстановить».</p>
+      <textarea id="bk" spellcheck="false">${esc(JSON.stringify(S))}</textarea>`,
+      `<button class="btn btn-line" data-act="bk-in">Восстановить</button><button class="btn btn-ink" data-act="bk-copy">Скопировать</button>`, 'backup');
+  },
+  'bk-copy': () => {
+    const t = $('#bk');
+    const done = () => toast('Скопировано');
+    const fallback = () => { t.focus(); t.select(); toast('Текст выделен — скопируйте его'); };
+    if (navigator.clipboard) navigator.clipboard.writeText(t.value).then(done, fallback); else fallback();
+  },
+  'bk-in': () => {
+    try {
+      const o = JSON.parse($('#bk').value);
+      if (!o || !Array.isArray(o.portions) || typeof o.log !== 'object') throw new Error('bad');
+      S = o; save(); closeSheet(); toast('Дневник восстановлен');
+    } catch (e) { toast('Это не похоже на копию дневника — проверьте текст'); }
+  },
+  'ask-demo': () => openConfirm('Показать пример?', 'Ваш дневник заменится примером. Сначала сохраните резервную копию, если в нём есть отметки.', 'Показать пример', 'do-demo'),
+  'ask-reset': () => openConfirm('Начать заново?', 'Все отметки и выученное удалятся из дневника.', 'Удалить всё', 'do-reset'),
+  'do-demo': () => { makeDemo(); closeSheet(); go('today'); toast('Загружен пример'); },
+  'do-reset': () => { S = null; try { localStorage.removeItem(LS); } catch (e) { /* noop */ } ui.sheet = null; ui.tab = 'today'; openOnboarding(); render(); },
+  'do-del-day': el => { delete S.log[el.dataset.arg]; save(); closeSheet(); toast('День удалён'); },
+  /* Quran */
+  'open-quran': () => { ui.q.mode = 'hide'; S.qmode = 'hide'; ui.peek = null; openReader(ui.q.s || (currentPortion() || { parts: [{ s: 1 }] }).parts[0].s, null, null); },
+  'read-portion': el => { const p = pById(el.dataset.id); if (p) openReader(p.parts[0].s, p.parts[0].f, p.id); },
+  'weak-open': el => openReader(Number(el.dataset.s), Number(el.dataset.a), null),
+  'q-go': el => { const sN = Number(el.dataset.v); ui.sheet = null; $('#sheet').classList.remove('open'); $('#scrim').classList.remove('open'); $('#sheet').hidden = true; $('#scrim').hidden = true; try { if (TG) TG.BackButton.hide(); } catch (e) { /* noop */ } openReader(sN, null, null); },
+  'q-pick': () => openSheet('Суры', `<div class="pick-search"><input id="sr-q" type="search" placeholder="Название или номер" autocomplete="off" data-act="sr-q"></div><div id="sr-list" class="pick">${surahPicker('')}</div>`, '', 'surahs'),
+  'q-mode': el => { ui.q.mode = el.dataset.v; S.qmode = ui.q.mode; ui.peek = null; save(); render(); },
+  'q-size': el => { S.qsize = clamp((S.qsize || 30) + Number(el.dataset.v), 20, 46); save(); const b = document.querySelector('.q-body'); if (b) b.style.setProperty('--qsize', S.qsize + 'px'); },
+  'q-retry': () => { ui.q.loadErr = null; render(); },
+  qw: el => {
+    const ref = Number(el.dataset.r), k = errKey(ref); if (!k) return;
+    S.err = S.err || {};
+    if (ui.q.mode === 'hide' && !el.classList.contains('peek')) { ui.peek = ui.peek || new Set(); ui.peek.add(ref); el.classList.add('peek'); return; }
+    if (S.err[k]) { delete S.err[k]; el.classList.remove('saved'); toast('Отметка снята'); }
+    else { S.err[k] = { n: 1, d: today() }; el.classList.add('saved'); toast('Слово отмечено как ошибка'); }
+    save(); haptic();
+  },
+  'q-ayah': el => ayahSheet(Number(el.dataset.s), Number(el.dataset.a)),
+  'q-listen': el => {
+    const g = G(Number(el.dataset.s), Number(el.dataset.a));
+    stopAudio(); closeSheet(true);
+    audio = new Audio(`https://cdn.islamic.network/quran/audio/128/ar.alafasy/${g}.mp3`);
+    audio.onended = () => { audio = null; };
+    audio.play().catch(() => { audio = null; toast('Не удалось включить аудио — нужен интернет'); });
+  },
+  'q-reveal': el => { const sN = +el.dataset.s, a = +el.dataset.a, W = words(sN); ui.peek = ui.peek || new Set(); for (let k = W.start[a - 1]; k < W.start[a]; k++) ui.peek.add(REF(sN, k)); closeSheet(); },
+  'q-unmark': el => { const pre = el.dataset.s + ':' + el.dataset.a + ':'; for (const k of Object.keys(S.err || {})) if (k.startsWith(pre)) delete S.err[k]; save(); closeSheet(); toast('Отметки сняты'); },
+  'q-focus-done': () => {
+    const id = ui.q.focus, p = id && pById(id); if (!p) return;
+    const d = today(), e = ensurePlan(d) || dayEntry(d, true); e.r = e.r || {}; if (!e.plan) e.plan = { near: [], far: [] };
+    if (!planIds(e).includes(id)) e.x = (e.x || []).concat(id);
+    const bad = errsToday(p);
+    e.r[id] = bad ? 'w' : 'g'; save();
+    toast(`${pTitle(p)} — ${bad ? 'с ошибками' : 'повторено'}`); ui.q.focus = null; render();
+  },
+  'err-clear-ask': () => openConfirm('Очистить слабые места?', 'Все отметки ошибок в тексте Корана удалятся.', 'Очистить', 'err-clear'),
+  'err-clear': () => { S.err = {}; save(); closeSheet(); toast('Отметки ошибок очищены'); },
+  /* onboarding */
+  'onb-demo': () => { makeDemo(); ui.onb = null; closeSheet(); render(); },
+  'onb-next': () => { ui.onb.step++; onbStep(); $('#sheet-body').scrollTop = 0; },
+  'onb-back': () => { ui.onb.step--; onbStep(); },
+  'onb-dir': el => { ui.onb.st.dir = el.dataset.v; ui.onb.st.memo = {}; onbStep(); },
+  'onb-upto': el => {
+    const o = ui.onb, prev = S; S = o.st;
+    const order = learnOrder(), i = Number(el.dataset.i);
+    const lastDone = order.reduce((k, p, j) => isDone(p) ? j : k, -1);
+    S.memo = {};
+    const upto = (i === lastDone) ? i - 1 : i;
+    for (let j = 0; j <= upto; j++) S.memo[order[j].id] = { l: pAyahs(order[j]), d: 'pre' };
+    S = prev;
+    const y = $('#sheet-body').scrollTop; onbStep(); $('#sheet-body').scrollTop = y;
+  },
+  'onb-more': () => { ui.onb.all = true; const y = $('#sheet-body').scrollTop; onbStep(); $('#sheet-body').scrollTop = y; },
+  'onb-cycle': el => { ui.onb.st.cycle = Number(el.dataset.v); onbStep(); },
+  'onb-finish': () => { S = ui.onb.st; ui.onb = null; save(); closeSheet(); }
+};
+function updateFoot(html) { const f = $('#sheet-foot'); f.innerHTML = html; f.hidden = !html; }
+function openConfirm(title, text, okLabel, act, arg) {
+  openSheet(title, `<p class="lead" style="font-size:15px">${esc(text)}</p>`,
+    `<button class="btn btn-line" data-act="close-sheet">Отмена</button><button class="btn btn-ink" data-act="${act}" ${arg ? `data-arg="${esc(arg)}"` : ''}>${esc(okLabel)}</button>`, 'confirm');
+}
+function afterPlanSetting() {
+  const e = S.log[today()];
+  if (e && e.plan && !Object.keys(e.r || {}).length) delete e.plan;
+  save(); render();
+}
+
+document.addEventListener('click', ev => {
+  const el = ev.target.closest('[data-act]');
+  if (!el || el.tagName === 'INPUT' || el.tagName === 'SELECT') return;
+  const fn = ACT[el.dataset.act];
+  if (fn) { ev.preventDefault(); fn(el, ev); }
+});
+document.addEventListener('change', ev => {
+  const el = ev.target, a = el.dataset && el.dataset.act;
+  if (a === 'name') { S.name = el.value.trim().slice(0, 40); save(); }
+  if (a === 'd-por') {
+    const d = ui.dayD, e = dayEntry(d, true), id = el.value;
+    e.n = {};
+    if (id) { const p = pById(id); const l = Math.max(1, (S.memo[id] || {}).l || 1); e.n[id] = l; if (!S.memo[id]) S.memo[id] = { l }; }
+    save(); updateSheet(daySheet(d));
+  }
+  if (a === 'd-pos') applyDayPos(el, true);
+});
+document.addEventListener('input', ev => {
+  if (ev.target.dataset && ev.target.dataset.act === 'd-pos') applyDayPos(ev.target, false);
+  if (ev.target.dataset && ev.target.dataset.act === 'sr-q') { const L = document.getElementById('sr-list'); if (L) L.innerHTML = surahPicker(ev.target.value); }
+});
+function applyDayPos(el, commit) {
+  const d = ui.dayD, e = S.log[d]; if (!e || !e.n) return;
+  const id = Object.keys(e.n)[0], p = pById(id); if (!p) return;
+  const l = Number(el.value);
+  $('#d-pos-l').textContent = posLabel(p, l);
+  if (commit) {
+    e.n[id] = l;
+    const m = S.memo[id] || (S.memo[id] = { l: 0 });
+    const latest = Object.keys(S.log).filter(x => S.log[x].n && S.log[x].n[id]).sort().pop();
+    if (latest === d) { m.l = l; if (l >= pAyahs(p)) m.d = m.d || d; else if (m.d === d) delete m.d; }
+    save();
+  }
+}
+document.addEventListener('keydown', ev => { if (ev.key === 'Escape') closeSheet(); });
+
+/* ================= boot ================= */
+initTelegram(() => {
+  S = loadLocal();
+  if (S) { render(); } else { render(); openOnboarding(); }
+  cloudLoad(obj => {
+    if (obj && obj.portions) {
+      S = obj;
+      try { localStorage.setItem(LS, JSON.stringify(S)); } catch (e) { /* noop */ }
+      if (ui.sheet === 'onb') { ui.onb = null; closeSheet(); } else render();
+    }
+  });
+});
+window.__hifz = { get S() { return S; }, set S(v) { S = v; }, ui, Q, nkey, words, openReader, refInfo, buildPlan, learnOrder, defaultPortions, pAyahs, pPages, pTitle, posLabel, dayDone, streakAt, makeDemo, mergeNext, splitPortion, render, TOTAL, PG, JUZG, AY, go };
+})();
+</script>
+</body>
+</html>
